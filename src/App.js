@@ -9,12 +9,43 @@ import Nav from './Components/Nav/Nav'
 import CustomQs from './Components/CustomQs/CustomQs';
 
 function App() {
+  const [categories, setCategories] = useState([])
+
+  const url = 'http://localhost:3000'
+  // const url = 'https://quiz-app-kr-backend.herokuapp.com'
+
+  const getCategories = async () => {
+    try{
+    const response = await fetch(url + '/categories')
+    const data = await response.json()
+    console.log(data)
+    setCategories(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getCategories()
+  }, [])
+  
+  // const getCategories = () => {
+	// 	fetch(url + '/categories')
+	// 		.then((response) => response.json())
+	// 		.then((data) => {
+	// 			console.log('data', data)
+	// 			// setCategories(data);
+	// 		});
+	// };
+	// useEffect(() => {
+	// 	getCategories()
+  //   }, []);
 
 
   return (
     <div className="App">
         <header>
-          <Nav />
+          <Nav categories={categories}/>
         </header>
         <main>
           <Switch>

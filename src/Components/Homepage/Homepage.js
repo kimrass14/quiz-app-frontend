@@ -1,7 +1,7 @@
 import React from 'react'
 import './Homepage.scss'
 
-const Homepage = () => {
+const Homepage = (props) => {
 
     return(
         <div>Homepage</div>
