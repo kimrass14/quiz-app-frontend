@@ -20,11 +20,11 @@ const Quiz = (props) => {
     const noMoreIncorrect = "You answered all questions correctly!"
 
     return(
-        <>
+        <div className="quiz">
             <div>Quiz</div>
             {question ? <div>{question[0].quiz_question}</div> : <div>{noMoreIncorrect}</div>}
-            <MultipleChoice />
-        </>
+            <MultipleChoice question={question[0]}/>
+        </div>
     )
 }
 export default Quiz
