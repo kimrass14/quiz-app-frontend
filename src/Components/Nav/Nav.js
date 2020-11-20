@@ -4,11 +4,11 @@ import { Dropdown } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Nav.scss'
 
-const Nav = (props) => {
+const Nav = (props) => {  
 
-    const loaded = props.categories.map((cat, index) => {
+  const loaded = props.categories.map((cat, index) => {
         return(
-          <Dropdown.Item as={Link} to="/quiz" href="#/action-3">{cat.name}</Dropdown.Item>
+          <Dropdown.Item as={Link} to="/quiz" key={index} onClick={() => {props.handleSelectCategory(cat)}}>{cat.name}</Dropdown.Item>
         )
     })
 

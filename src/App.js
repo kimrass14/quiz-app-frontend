@@ -10,6 +10,7 @@ import CustomQs from './Components/CustomQs/CustomQs';
 
 function App() {
   const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState({})
 
   const url = 'http://localhost:3000'
   // const url = 'https://quiz-app-kr-backend.herokuapp.com'
@@ -41,11 +42,19 @@ function App() {
 	// 	getCategories()
   //   }, []);
 
+  const handleSelectCategory = (category) => {
+    console.log('handlegetquestion category', category)
+    setSelectedCategory(category)
+    // return(
+    //   <div>question</div>
+    // )
+  }
+
 
   return (
     <div className="App">
         <header>
-          <Nav categories={categories}/>
+          <Nav categories={categories} handleSelectCategory={handleSelectCategory}/>
         </header>
         <main>
           <Switch>
@@ -53,7 +62,7 @@ function App() {
                 <Homepage />
             </Route>
             <Route exact path='/quiz'>
-                <Quiz />
+                <Quiz selectedCategory={selectedCategory}/>
                 <BubbleChart />
             </Route>
             <Route exact path='/customquestion'>
