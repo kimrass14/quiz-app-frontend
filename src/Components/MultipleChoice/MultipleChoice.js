@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import './MultipleChoice.scss'
 
 const MultipleChoice = (props) => {
-    // console.log('mult choice props', props)
+    console.log('mult choice props', props)
 
     const [choices, setChoices] = useState([])
     const [message, setMessage] = useState("")

@@ -3,12 +3,12 @@ import './Form.scss'
 
 const Form = (props) => {
     
-    const [formData, setFormData] = useState()
+    // const [formData, setFormData] = useState()
 
     return(
         <div className="form">
             <div>Form</div>
-            <form>
+            {/* <form>
                 <input
                     className="category"
                     type="text"
@@ -64,7 +64,7 @@ const Form = (props) => {
 					<input type='submit' value='Update' className="button"/>
 				</div>
 
-            </form>
+            </form> */}
         </div>
     )
 }
