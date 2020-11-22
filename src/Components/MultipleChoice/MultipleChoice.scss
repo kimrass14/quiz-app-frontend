@@ -1,0 +1,14 @@
+@import '../../variables.scss';
+
+.multiple-choice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    input {
+        padding: 5px;
+    }
+
+    div {
+        height: 35px;
+    }
+}

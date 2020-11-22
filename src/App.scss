@@ -1,9 +1,26 @@
-.App {
-  color: blue;
-  
-  header {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
+@import './variables.scss';
+
+header {
+  background-color: $q-dark;
+  display: flex !important;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+
+  a {
+    // display: inline-block;
+
+    div {
+    align-items: center;
+    }
   }
+
+  div {
+    // display: inline-block;
+  }
+}
+
+main {
+  background-color: $q-light;
+  border: solid black;
 }

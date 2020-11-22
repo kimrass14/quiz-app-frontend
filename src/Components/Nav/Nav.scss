@@ -1,10 +1,9 @@
-// .dropdown {
-//     color: black;
+@import '../../variables.scss';
 
-//     .dropdown-menu.show {
-//         color: black;
-//         display: block;
-//         // left: auto !important;
-//     }
+.app-name {
+    color: white;
+}
 
-// }
+.custom-link {
+    color: $q-medium;
+}

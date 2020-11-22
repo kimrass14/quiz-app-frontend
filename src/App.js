@@ -12,43 +12,33 @@ function App() {
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState({})
 
-  // const url = 'http://localhost:3000'
-  const url = 'https://quiz-app-kr-backend.herokuapp.com'
+  const url = 'http://localhost:3000'
+  // const url = 'https://quiz-app-kr-backend.herokuapp.com'
 
   const getCategories = async () => {
-    try{
-    const response = await fetch(url + '/categories')
-    const data = await response.json()
-    console.log(data)
-    setCategories(data)
-    } catch (error) {
-      console.log(error)
-    }
+      try{
+        const response = await fetch(url + '/categories')
+        const data = await response.json()
+        console.log(data)
+        setCategories(data)
+      } catch (error) {
+        console.log(error)
+      }
   }
 
   useEffect(() => {
     getCategories()
   }, [])
-  
-  // const getCategories = () => {
-	// 	fetch(url + '/categories')
-	// 		.then((response) => response.json())
-	// 		.then((data) => {
-	// 			console.log('data', data)
-	// 			// setCategories(data);
-	// 		});
-	// };
-	// useEffect(() => {
-	// 	getCategories()
-  //   }, []);
+  // need to add something to dependency so when category is clicked again, it fetches an updated list
 
   const handleSelectCategory = (category) => {
     console.log('handlegetquestion category', category)
     setSelectedCategory(category)
-    // return(
-    //   <div>question</div>
-    // )
+  
   }
+  //onclick of category and next button, should fetch category questions again
+  //call function to run fetch
+  //or add a counter that is the useEffect dependency in the Quiz component
 
 
   return (
@@ -62,7 +52,7 @@ function App() {
                 <Homepage />
             </Route>
             <Route exact path='/quiz'>
-                <Quiz selectedCategory={selectedCategory}/>
+                <Quiz selectedCategory={selectedCategory} url={url}/>
                 <BubbleChart />
             </Route>
             <Route exact path='/customquestion'>

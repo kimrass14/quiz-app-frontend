@@ -1,0 +1,23 @@
+@import '../../variables.scss';
+
+.quiz {
+    background-color: $q-light;
+    padding: 5%;
+    border: solid black;
+
+    .question {
+        background-color: $q-dark;
+        color: $q-light;
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+    }
+
+    button {
+        margin-left: auto;
+        margin-right: auto;
+        // display: flex;
+        // justify-content: center;
+        // float: right;
+    }
+}
