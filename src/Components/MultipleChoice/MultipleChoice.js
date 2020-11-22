@@ -11,6 +11,8 @@ const MultipleChoice = (props) => {
     // const url = 'http://localhost:3000'
     // const url = 'https://quiz-app-kr-backend.herokuapp.com'
 
+    const questionObj = props.question
+
     const handleCompare = (userAnswer) => {
         if (userAnswer === questionObj.correct_answer) {
 
@@ -31,16 +33,19 @@ const MultipleChoice = (props) => {
                     const res = await response.json()
                     console.log('updated user answer in db', res)
                     
-                    
+                    // res ? props.handleCorrect() : <div>wait</div>     
+
                 } catch (error) {
                     console.log(error)
                 }
             }
             updateUserAnswer(updatedQuestionObj)
+            
             setMessage("Nice job. Correct Answer!")
 
         } else {
             console.log("incorrect answer")
+            props.handleIncorrect()
             setMessage("That is not correct")
         }
         // return(
@@ -48,7 +53,7 @@ const MultipleChoice = (props) => {
         // )
     }
 
-    const questionObj = props.question
+    
 
     useEffect(() => {
         if (props.question) {
