@@ -56,8 +56,8 @@ const Quiz = (props) => {
     return(
         <div className="quiz">
             <div>Quiz</div>
-            {questionsArr === 'undefined' ? loaded : noMoreIncorrect}
-            <button onClick={() => {loaded()}}>Next</button>
+            {questionsArr ? loaded() : <div>nothing</div>}
+            {/* <button onClick={() => {loaded()}}>Next</button> */}
             {/* <button onClick={questionsArr ? loaded() : <div>{noMoreIncorrect}</div>}>Next</button> */}
         </div>
     )
