@@ -59,8 +59,8 @@ const BubbleChart = () => {
             .text(function(d) {
                 return d.name + ": " + d.num
             })
-            .attr("x", 125)
-            .attr("y", 125)
+            // .attr("x", 125)
+            // .attr("y", 125)
             // .attr("dy", ".2em")
             .style("text-anchor", "middle")
             .attr("font-family", "sans-serif")
@@ -76,13 +76,13 @@ const BubbleChart = () => {
                     return d.y
                 });
 
-            // text
-            //     .attr("cx", function(d) {
-            //         return d.x
-            //     })
-            //     .attr("cy", function(d) {
-            //         return d.y
-            //     })
+            text
+                .attr("cx", function(d) {
+                    return d.x
+                })
+                .attr("cy", function(d) {
+                    return d.y
+                })
         }
 
         //at every tick of clock, run ticked function
