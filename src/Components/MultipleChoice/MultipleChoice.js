@@ -13,48 +13,7 @@ const MultipleChoice = (props) => {
 
     const questionObj = props.question
 
-    const handleCompare = (userAnswer) => {
-        if (userAnswer === questionObj.correct_answer) {
-
-            const updatedQuestionObj = {...questionObj}
-            updatedQuestionObj.user_answer = "correct"
-            
-            const updateUserAnswer = async (updatedQuestion) => {
-                // console.log('fetch updatedQuestionObj', updatedQuestion)
-                
-                try{
-                    
-                    const response = await fetch(props.url + '/categories/' + questionObj.category_id + '/questions/' + questionObj.id,
-                    {
-                        method: 'put',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify(updatedQuestion)
-                    })
-                    const res = await response.json()
-                    console.log('updated user answer in db', res)
-                    
-                    // res ? props.handleCorrect() : <div>wait</div>     
-
-                } catch (error) {
-                    console.log(error)
-                }
-            }
-            updateUserAnswer(updatedQuestionObj)
-            
-            setMessage("Nice job. Correct Answer!")
-
-        } else {
-            console.log("incorrect answer")
-            props.handleIncorrect()
-            setMessage("That is not correct")
-        }
-        // return(
-        //     <div></div>
-        // )
-    }
-
-    
-
+    //take the question object and push the multiple choice values into Choices array -> choices state
     useEffect(() => {
         if (props.question) {
         let choices = []
@@ -74,6 +33,46 @@ const MultipleChoice = (props) => {
             />
         )
     })
+
+    const handleCompare = (userAnswer) => {
+        if (userAnswer === questionObj.correct_answer) {
+
+            const updatedQuestionObj = {...questionObj}
+            updatedQuestionObj.user_answer = "correct"
+            
+            const updateUserAnswer = async (updatedQuestionObj) => {
+                // console.log('fetch updatedQuestionObj', updatedQuestion)
+                
+                try{
+                    
+                    const response = await fetch(props.url + '/categories/' + questionObj.category_id + '/questions/' + questionObj.id,
+                    {
+                        method: 'put',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(updatedQuestionObj)
+                    })
+                    const res = await response.json()
+                    console.log('updated user answer in db', res)
+                    
+                    res ? props.handleCorrect() : <div>wait</div>     
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            updateUserAnswer(updatedQuestionObj)
+            
+            setMessage("Nice job. Correct Answer!")
+
+        } else {
+            console.log("incorrect answer")
+            props.handleIncorrect()
+            setMessage("That is not correct")
+        }
+        // return(
+        //     <div></div>
+        // )
+    }
 
     return(
         <div className="multiple-choice">

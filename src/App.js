@@ -30,7 +30,7 @@ function App() {
     getCategories()
   }, [])
 
-  //CAUSING TOO MANY RE-RENDERS?? DON'T UNDERSTAND BC USING USEEFFECT WHICH SHOULD PREVENT THIS
+  
   const handleGetCatQuestions = async (category) => {
     console.log('handle get cat questions', category)
       try{
@@ -46,7 +46,6 @@ function App() {
   useEffect(() => {
     handleGetCatQuestions();
   }, [])
-  
 
   return (
     <div className="App">
