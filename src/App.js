@@ -12,6 +12,44 @@ function App() {
   const [categories, setCategories] = useState([])
   const [selectedCatAndQuestions, setSelectedCatAndQuestions] = useState({})
 
+  const emptyForm = {
+    name: '',
+    created: '',
+    questions: [
+      {
+        quiz_question: '',
+        correct_answer: '',
+        incorrect_answer_1: '',
+        incorrect_answer_2: '',
+        incorrect_answer_3: '',
+        category_id: '',
+        user_answer: ''
+      }
+    ]
+  }
+
+  const [selectedQuestion, setSelectedQuestion] = useState(emptyForm)
+  const selectQuestion = (question) => {
+    setSelectedQuestion(question)
+  }
+
+  const handleCreate = async (newItem) => {
+      try{
+        const category = await fetch(url + '/categories/', {
+          method: 'post',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newItem)
+        })
+        const response = await category.json()
+        getCategories()
+        console.log('handleCreate newitem', response)
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
   const url = 'http://localhost:3000'
   // const url = 'https://quiz-app-kr-backend.herokuapp.com'
 
@@ -66,9 +104,9 @@ function App() {
                 </>
             )}/>
                 
-            <Route exact path='/customquestion'>
-                <Form />
-            </Route>
+            <Route exact path='/customquestion' render={(rp) => (
+                <Form {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreate}/>
+            )}/>
             <Route exact path='/editquestion'>
                 <Form />
             </Route>
