@@ -5,6 +5,7 @@ const QuestionForm = (props) => {
     console.log('question form props', props)
     
     const [formData, setFormData] = useState(props.selectedQuestion)
+    const [state, setState] = useState()
 
     // useEffect(() => {
         
@@ -21,6 +22,15 @@ const QuestionForm = (props) => {
         event.preventDefault()
         props.handleSubmit(formData)
     }
+
+    const handleReset = () => {
+        Array.from(document.querySelectorAll("input")).forEach(
+            input => (input.value = "")
+        );
+        setFormData({
+            itemvalues: [{}]
+        });
+    };
 
     return(
         <div className="create-question">
@@ -69,6 +79,7 @@ const QuestionForm = (props) => {
                 />
                 <div className="btn-div">
 					<input type='submit' value={props.label} className="button" to='/customlist'/>
+                    <button onClick={handleReset}>Reset</button>
                 </div>
             </form>
         </div>
