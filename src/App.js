@@ -8,6 +8,7 @@ import CategoryForm from './Components/CategoryForm/CategoryForm';
 import Nav from './Components/Nav/Nav';
 import CustomList from './Components/CustomList/CustomList'
 import QuestionForm from './Components/QuestionForm/QuestionForm';
+import BubbleData from './Components/BubbleData/BubbleData';
 
 function App() {
   const [categories, setCategories] = useState([])
@@ -176,7 +177,7 @@ function App() {
             <Route exact path='/quiz' render={(rp) => (
                 <>
                   <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url}/>
-                  <BubbleChart {...rp}/>
+                  <BubbleData {...rp}/>
                 </>
             )}/>
                 

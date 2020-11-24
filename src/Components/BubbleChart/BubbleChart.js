@@ -3,15 +3,21 @@ import * as d3 from 'd3'
 import './BubbleChart.scss'
 import { scaleSqrt } from 'd3'
 
-const BubbleChart = () => {
+const BubbleChart = (props) => {
+    const dataArr = props.dataSet
+    //needs to receive:
+    //list off all categories
+    //count of questions where user_answer === "correct"
+    //push into an object with an id key
+    //push each object into an array called dataSet
 
-    const dataSet = [
-        {"id": 1, "name": "Science", "num": 0},
-        {"id": 2, "name": "Math", "num": 9},
-        {"id": 3, "name": "Geography", "num": 15},
-        {"id": 4, "name": "Music", "num": 10},
-        {"id": 5, "name": "General", "num": 25},
-    ]
+    // const dataSet = [
+    //     {"id": 1, "name": "Science", "num": 0},
+    //     {"id": 2, "name": "Math", "num": 9},
+    //     {"id": 3, "name": "Geography", "num": 15},
+    //     {"id": 4, "name": "Music", "num": 10},
+    //     {"id": 5, "name": "General", "num": 25},
+    // ]
 
     // const [dataSet, setDataSet] = useState(score)
     // console.log('dataset', dataSet)
@@ -40,7 +46,7 @@ const BubbleChart = () => {
         const circles = d3
             .select(gRef.current)
             .selectAll("circle")
-            .data(dataSet)
+            .data(dataArr)
             .enter().append("circle")
             .attr("class", "category")
             .attr("r", function(d) {
@@ -54,7 +60,7 @@ const BubbleChart = () => {
         const text = d3
             .select(gRef.current)
             .selectAll("text")
-            .data(dataSet)
+            .data(dataArr)
             .enter().append("text")
             .text(function(d) {
                 return d.name + ": " + d.num
@@ -86,7 +92,7 @@ const BubbleChart = () => {
         }
 
         //at every tick of clock, run ticked function
-        simulation.nodes(dataSet)
+        simulation.nodes(dataArr)
             .on('tick', ticked)
 
     }
