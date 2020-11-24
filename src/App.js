@@ -181,7 +181,7 @@ function App() {
             )}/>
                 
             <Route exact path='/customcategory' render={(rp) => (
-                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} label="Add" route="/customquestion"/>
+                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} categories={categories} label="Add" route="/customquestion"/>
             )}/>
             <Route exact path='/customquestion' render={(rp) => (
                 <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreateQuestion} createdCategory={createdCategory} label="Add"/>

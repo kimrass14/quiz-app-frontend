@@ -8,6 +8,30 @@ const CategoryForm = (props) => {
     
     const [formData, setFormData] = useState(props.selectedCategory)
 
+    const loaded = props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
+        console.log('custom category', customCategory)
+
+        return(
+            <>
+                <option value={customCategory} key={index}>{customCategory.name}</option>
+                {/* <option value={customCategory} onChange={handleSelect}>{customCategory.name}</option> */}
+            </>
+        )
+    })
+
+    const handleSelect = (event) => {
+        console.log('event', event)
+    //VALUE IN OPTION TAG ISN'T BEING PASSED
+        // const category = event.target.value
+        // console.log('value', category)
+    }
+
+    const loading = () => {
+        return(
+            <div></div>
+        )
+    }
+
     const handleChange = (e) => {
         const key = e.target.name
         const value = e.target.value
@@ -35,6 +59,16 @@ const CategoryForm = (props) => {
                 />
                   <div className="btn-div"><input type='submit' value={props.label} className="button"/></div>
             </form>
+            {props.categories ? 
+                <div className="dropdown">
+                    <label for="categories">Category</label>
+                    <div>
+                        <select id="categories" name="categories" onChange={handleSelect}>
+                            {loaded}
+                        </select>
+                    </div>
+                </div>
+             : loading}
         </div>
     )
 }
