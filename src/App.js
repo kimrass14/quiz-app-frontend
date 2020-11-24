@@ -14,10 +14,16 @@ function App() {
   const [selectedCatAndQuestions, setSelectedCatAndQuestions] = useState({})
   const [createdCategory, setCreatedCategory] = useState({})
 
-  const emptyForm = {
+  const emptyCategory = {
     name: '',
-    created: '',
-    questions:[
+    created: ''
+  }
+  const [selectedCategory, setSelectedCategory] = useState(emptyCategory)
+  const selectCategory = (category) => {
+    setSelectedCategory(category)
+  }
+
+  const emptyQuestion =
       {
         quiz_question: '',
         correct_answer: '',
@@ -27,13 +33,11 @@ function App() {
         category_id: '',
         user_answer: ''
       }
-    ]
-  }
-
-  const [selectedQuestion, setSelectedQuestion] = useState(emptyForm)
+  const [selectedQuestion, setSelectedQuestion] = useState(emptyQuestion)
   const selectQuestion = (question) => {
     setSelectedQuestion(question)
   }
+  
 
   const handleCreate = async (newItem) => {
       try{
@@ -57,6 +61,10 @@ function App() {
       } catch (error) {
         console.log(error)
       }
+  }
+
+  const handleCreateQuestion = async (newItem) => {
+    
   }
 
   const url = 'http://localhost:3000'
@@ -114,10 +122,10 @@ function App() {
             )}/>
                 
             <Route exact path='/customcategory' render={(rp) => (
-                <CategoryForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreate} label="Add"/>
+                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreate} label="Add"/>
             )}/>
             <Route exact path='/customquestion' render={(rp) => (
-                <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreate} createdCategory={createdCategory} label="Add"/>
+                <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreateQuestion} createdCategory={createdCategory} label="Add"/>
             )}/>
             <Route exact path='/editquestion'>
                 <CategoryForm />

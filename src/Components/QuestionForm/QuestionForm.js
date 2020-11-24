@@ -31,7 +31,7 @@ const QuestionForm = (props) => {
                     className="quiz-question"
                     type="text"
                     name="quiz_question"
-                    value={formData.questions.quiz_question}
+                    value={formData.quiz_question}
                     placeholder="Question"
                     onChange={handleChange}
                 />
@@ -39,7 +39,7 @@ const QuestionForm = (props) => {
                     className="correct-answer"
                     type="text"
                     name="correct_answer"
-                    value={formData.questions.correct_answer}
+                    value={formData.correct_answer}
                     placeholder="Correct answer"
                     onChange={handleChange}
                 />
@@ -47,7 +47,7 @@ const QuestionForm = (props) => {
                     className="multiple-choice"
                     type="text"
                     name="incorrect_answer_1"
-                    value={formData.questions.incorrect_answer_1}
+                    value={formData.incorrect_answer_1}
                     placeholder="Multiple choice"
                     onChange={handleChange}
                 />
@@ -55,7 +55,7 @@ const QuestionForm = (props) => {
                     className="multiple-choice"
                     type="text"
                     name="incorrect_answer_2"
-                    value={formData.questions.incorrect_answer_2}
+                    value={formData.incorrect_answer_2}
                     placeholder="Multiple choice"
                     onChange={handleChange}
                 />
@@ -63,7 +63,7 @@ const QuestionForm = (props) => {
                     className="multiple-choice"
                     type="text"
                     name="incorrect_answer_3"
-                    value={formData.questions.incorrect_answer_3}
+                    value={formData.incorrect_answer_3}
                     placeholder="Multiple choice"
                     onChange={handleChange}
                 />

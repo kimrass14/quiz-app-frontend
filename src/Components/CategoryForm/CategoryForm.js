@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
+import {Link, route} from 'react-router-dom'
 import './CategoryForm.scss'
 
 const CategoryForm = (props) => {
     console.log('form new category', props.createdCategory)
     
-    const [formData, setFormData] = useState(props.selectedQuestion)
+    const [formData, setFormData] = useState(props.selectedCategory)
 
     const handleChange = (e) => {
         const key = e.target.name
@@ -30,53 +31,9 @@ const CategoryForm = (props) => {
                     placeholder="Category name"
                     onChange={handleChange}
                 />
-                  <div className="btn-div">
-					<input type='submit' value={props.label} className="button" to='/customquestion'/>
-					{/* <input type='submit' value='Update' className="button"/> */}
-				</div>
-            </form>
-            <form>
-                {/* <input
-                    className="question"
-                    type="text"
-                    name="quiz_question"
-                    value="UPDATE"
-                    placeholder="Question"
-                    onChange="UPDATE"
-                />
-
-                <input
-                    className="input-1"
-                    type="text"
-                    name="correct_answer"
-                    value="UPDATE"
-                    placeholder="Correct Answer"
-                    onChange="UPDATE"
-                />
-                <input
-                    className="input-2"
-                    type="text"
-                    name="incorrect_answer_1"
-                    value="UPDATE"
-                    placeholder="Other choice"
-                    onChange="UPDATE"
-                />
-                <input
-                    className="input-2"
-                    type="text"
-                    name="incorrect_answer_2"
-                    value="UPDATE"
-                    placeholder="Other choice"
-                    onChange="UPDATE"
-                />
-                <input
-                    className="input-3"
-                    type="text"
-                    name="incorrect_answer_3"
-                    value="UPDATE"
-                    placeholder="Other choice"
-                    onChange="UPDATE"
-                /> */}
+                  <Link to='/customquestion'><div className="btn-div">
+                    <input type='submit' value={props.label} className="button"/>
+				</div></Link>
             </form>
         </div>
     )
