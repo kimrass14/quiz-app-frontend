@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import MultipleChoice from '../MultipleChoice/MultipleChoice'
 import './Quiz.scss'
 
 const Quiz = (props) => {
     console.log('quiz props', props)
 
-    const [question, setQuestion] = useState([])
+    // const [question, setQuestion] = useState([])
 
     const questionsArr = props.selectedCatAndQuestions.questions
 

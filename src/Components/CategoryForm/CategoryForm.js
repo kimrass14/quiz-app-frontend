@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import {withRouter} from 'react-router-dom'
-import {Link, route} from 'react-router-dom'
 import './CategoryForm.scss'
 
 const CategoryForm = (props) => {

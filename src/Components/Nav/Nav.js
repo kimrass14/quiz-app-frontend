@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { Dropdown } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Nav.scss'

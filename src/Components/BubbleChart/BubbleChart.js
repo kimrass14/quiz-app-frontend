@@ -1,15 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useRef} from 'react'
 import * as d3 from 'd3'
 import './BubbleChart.scss'
 import { scaleSqrt } from 'd3'
 
 const BubbleChart = (props) => {
     const dataArr = props.dataSet
-    //needs to receive:
-    //list off all categories
-    //count of questions where user_answer === "correct"
-    //push into an object with an id key
-    //push each object into an array called dataSet
 
     // const dataSet = [
     //     {"id": 1, "name": "Science", "num": 0},
@@ -36,7 +31,7 @@ const BubbleChart = (props) => {
         .force("x", d3.forceX(250 /2).strength(.05))
         .force("y", d3.forceY(250 /2).strength(.05))
         .force("collide", d3.forceCollide(function(d) {
-            return radiusScale(d.num) + 1
+            return radiusScale(d.correct_count) + 1
         }))
 
 
@@ -50,7 +45,7 @@ const BubbleChart = (props) => {
             .enter().append("circle")
             .attr("class", "category")
             .attr("r", function(d) {
-                return radiusScale(d.num)
+                return radiusScale(d.correct_count)
             })
             .attr("fill", "white")
             // .attr("cx", 125)
@@ -63,7 +58,7 @@ const BubbleChart = (props) => {
             .data(dataArr)
             .enter().append("text")
             .text(function(d) {
-                return d.name + ": " + d.num
+                return d.name + ": " + d.correct_count
             })
             // .attr("x", 125)
             // .attr("y", 125)

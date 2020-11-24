@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import './QuestionForm.scss'
 
 const QuestionForm = (props) => {
     console.log('question form props', props)
     
     const [formData, setFormData] = useState(props.selectedQuestion)
-    const [state, setState] = useState()
+    // const [state, setState] = useState()
 
     const handleChange = (e) => {
         const key = e.target.name

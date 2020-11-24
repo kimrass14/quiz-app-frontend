@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Route, Link, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import './App.scss';
-import BubbleChart from './Components/BubbleChart/BubbleChart';
 import Homepage from './Components/Homepage/Homepage';
 import Quiz from './Components/Quiz/Quiz';
 import CategoryForm from './Components/CategoryForm/CategoryForm';
@@ -177,7 +176,7 @@ function App() {
             <Route exact path='/quiz' render={(rp) => (
                 <>
                   <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url}/>
-                  <BubbleData {...rp}/>
+                  <BubbleData {...rp} categories={categories}/>
                 </>
             )}/>
                 
