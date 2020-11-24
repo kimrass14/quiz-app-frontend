@@ -37,6 +37,9 @@ function App() {
   const selectQuestion = (question) => {
     setSelectedQuestion(question)
   }
+
+  const url = 'http://localhost:3000'
+  // const url = 'https://quiz-app-kr-backend.herokuapp.com'
   
 
   const handleCreateCategory = async (newItem) => {
@@ -73,9 +76,6 @@ function App() {
         console.log(error)
       }
   }
-
-  const url = 'http://localhost:3000'
-  // const url = 'https://quiz-app-kr-backend.herokuapp.com'
 
   const getCategories = async () => {
       try{
@@ -126,6 +126,42 @@ function App() {
       }
   }
 
+    const handleDeleteCategory = async (category) => {
+        console.log('handle delete params', url + '/categories/' + category.id)
+        try {
+            const deletedCategory = await fetch(url + '/categories/' + category.id, {
+            method: 'delete',
+            // headers: {
+            //     'Content-Type': 'application/json'
+            // },
+            // body: JSON.stringify(category)
+          })
+          const response = await deletedCategory.json()
+          console.log('handleDelete category', response)
+          getCategories()
+        } catch (error) {
+          console.log(error)
+        }
+    }
+
+    const handleDeleteQs = async (question) => {
+        console.log('delete Q params', question)
+        try {
+            const deletedQuestion = await fetch(url + '/categories/' + question.category_id + '/questions/' + question.id, {
+            method: 'delete',
+            // headers: {
+            //     'Content-Type': 'application/json'
+            // },
+            // body: JSON.stringify(category)
+          })
+          const response = await deletedQuestion.json()
+          console.log('handleDelete question', response)
+          getCategories()
+        } catch (error) {
+          console.log(error)
+        }
+    }
+
   return (
     <div className="App">
         <header>
@@ -154,7 +190,7 @@ function App() {
                 <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleUpdateCategory} label="Update" route="/editcategory"/>
             )}/>
             <Route exact path='/customlist' render={(rp) => (
-                <CustomList {...rp} categories={categories} selectCategory={selectCategory}/>
+                <CustomList {...rp} categories={categories} selectCategory={selectCategory} handleDelete={handleDeleteCategory} handleDeleteQs={handleDeleteQs}/>
             )}/>
           </Switch>
         </main>

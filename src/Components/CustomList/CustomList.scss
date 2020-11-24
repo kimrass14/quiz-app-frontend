@@ -1,0 +1,9 @@
+@import '../../variables.scss';
+
+.custom-list {
+    border: 1px solid black;
+
+    .category {
+        display: flex;
+    }
+}
