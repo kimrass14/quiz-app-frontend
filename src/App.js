@@ -6,8 +6,9 @@ import Homepage from './Components/Homepage/Homepage';
 import Quiz from './Components/Quiz/Quiz';
 import CategoryForm from './Components/CategoryForm/CategoryForm';
 import Nav from './Components/Nav/Nav';
-import CustomQs from './Components/CustomQs/CustomQs'
+import CustomList from './Components/CustomList/CustomList'
 import QuestionForm from './Components/QuestionForm/QuestionForm';
+import BubbleData from './Components/BubbleData/BubbleData';
 
 function App() {
   const [categories, setCategories] = useState([])
@@ -37,6 +38,9 @@ function App() {
   const selectQuestion = (question) => {
     setSelectedQuestion(question)
   }
+
+  const url = 'http://localhost:3000'
+  // const url = 'https://quiz-app-kr-backend.herokuapp.com'
   
 
   const handleCreateCategory = async (newItem) => {
@@ -74,9 +78,6 @@ function App() {
       }
   }
 
-  const url = 'http://localhost:3000'
-  // const url = 'https://quiz-app-kr-backend.herokuapp.com'
-
   const getCategories = async () => {
       try{
         const response = await fetch(url + '/categories')
@@ -92,7 +93,6 @@ function App() {
     getCategories()
   }, [])
 
-  //CAUSING TOO MANY RE-RENDERS?? DON'T UNDERSTAND BC USING USEEFFECT WHICH SHOULD PREVENT THIS
   const handleGetCatQuestions = async (category) => {
     console.log('handle get cat questions', category)
       try{
@@ -109,6 +109,59 @@ function App() {
     handleGetCatQuestions();
   }, [])
   
+  const handleUpdateCategory = async (category) => {
+      try{
+          const updatedCategory = await fetch(url + '/categories/' + category.id, {
+          method: 'put',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(category)
+        })
+        const response = await updatedCategory.json()
+        // getCategories()
+        // setCreatedCategory(response)
+        console.log('handleUpdate category', response)
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
+    const handleDeleteCategory = async (category) => {
+        console.log('handle delete params', url + '/categories/' + category.id)
+        try {
+            const deletedCategory = await fetch(url + '/categories/' + category.id, {
+            method: 'delete',
+            // headers: {
+            //     'Content-Type': 'application/json'
+            // },
+            // body: JSON.stringify(category)
+          })
+          const response = await deletedCategory.json()
+          console.log('handleDelete category', response)
+          getCategories()
+        } catch (error) {
+          console.log(error)
+        }
+    }
+
+    const handleDeleteQs = async (question) => {
+        console.log('delete Q params', question)
+        try {
+            const deletedQuestion = await fetch(url + '/categories/' + question.category_id + '/questions/' + question.id, {
+            method: 'delete',
+            // headers: {
+            //     'Content-Type': 'application/json'
+            // },
+            // body: JSON.stringify(category)
+          })
+          const response = await deletedQuestion.json()
+          console.log('handleDelete question', response)
+          getCategories()
+        } catch (error) {
+          console.log(error)
+        }
+    }
 
   return (
     <div className="App">
@@ -124,22 +177,22 @@ function App() {
             <Route exact path='/quiz' render={(rp) => (
                 <>
                   <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url}/>
-                  <BubbleChart {...rp}/>
+                  <BubbleData {...rp}/>
                 </>
             )}/>
                 
             <Route exact path='/customcategory' render={(rp) => (
-                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} label="Add"/>
+                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} categories={categories} label="Add" route="/customquestion"/>
             )}/>
             <Route exact path='/customquestion' render={(rp) => (
                 <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreateQuestion} createdCategory={createdCategory} label="Add"/>
             )}/>
-            <Route exact path='/editquestion'>
-                <CategoryForm />
-            </Route>
-            <Route exact path='/customlist'>
-                <CustomQs />
-            </Route>
+            <Route exact path='/editcategory' render={(rp) => (
+                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleUpdateCategory} label="Update" route="/editcategory"/>
+            )}/>
+            <Route exact path='/customlist' render={(rp) => (
+                <CustomList {...rp} categories={categories} selectCategory={selectCategory} handleDelete={handleDeleteCategory} handleDeleteQs={handleDeleteQs}/>
+            )}/>
           </Switch>
         </main>
     </div>

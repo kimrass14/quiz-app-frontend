@@ -7,10 +7,6 @@ const QuestionForm = (props) => {
     const [formData, setFormData] = useState(props.selectedQuestion)
     const [state, setState] = useState()
 
-    // useEffect(() => {
-        
-    // }, [props.createdCategory.id])
-
     const handleChange = (e) => {
         const key = e.target.name
         const value = e.target.value
@@ -22,6 +18,8 @@ const QuestionForm = (props) => {
         event.preventDefault()
         props.handleSubmit(formData)
     }
+
+    
 
     const handleReset = () => {
         Array.from(document.querySelectorAll("input")).forEach(
@@ -35,7 +33,7 @@ const QuestionForm = (props) => {
     return(
         <div className="create-question">
             <div>Add your own question here</div>
-            <div>{props.createdCategory.name}</div>
+            <div>Category: {props.createdCategory.name}</div>
             <form id="question-form" onSubmit={handleSubmit}>
                 <input
                     className="quiz-question"
@@ -82,6 +80,7 @@ const QuestionForm = (props) => {
                     <button onClick={handleReset}>Reset</button>
                 </div>
             </form>
+            
         </div>
     )
 }
