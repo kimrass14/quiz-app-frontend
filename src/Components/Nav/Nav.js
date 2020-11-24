@@ -17,7 +17,7 @@ const Nav = (props) => {
     return(
         <>
             <Link to="/quiz"><div className="app-name">The Quiz</div></Link>
-            <Link to="/customquestion"><div className="custom-link">Create</div></Link>
+            <Link to="/customcategory"><div className="custom-link">Create</div></Link>
             <Link to="/customlist"><div className="custom-link">View</div></Link>
             <Dropdown>
               <Dropdown.Toggle variant="gray-dark" id="dropdown-basic" className="custom-link">Category</Dropdown.Toggle>

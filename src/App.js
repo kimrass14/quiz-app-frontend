@@ -4,13 +4,75 @@ import './App.scss';
 import BubbleChart from './Components/BubbleChart/BubbleChart';
 import Homepage from './Components/Homepage/Homepage';
 import Quiz from './Components/Quiz/Quiz';
-import Form from './Components/Form/Form';
+import CategoryForm from './Components/CategoryForm/CategoryForm';
 import Nav from './Components/Nav/Nav';
 import CustomQs from './Components/CustomQs/CustomQs'
+import QuestionForm from './Components/QuestionForm/QuestionForm';
 
 function App() {
   const [categories, setCategories] = useState([])
   const [selectedCatAndQuestions, setSelectedCatAndQuestions] = useState({})
+  const [createdCategory, setCreatedCategory] = useState({})
+
+  const emptyCategory = {
+    name: '',
+    created: ''
+  }
+  const [selectedCategory, setSelectedCategory] = useState(emptyCategory)
+  const selectCategory = (category) => {
+    setSelectedCategory(category)
+  }
+
+  const emptyQuestion =
+      {
+        quiz_question: '',
+        correct_answer: '',
+        incorrect_answer_1: '',
+        incorrect_answer_2: '',
+        incorrect_answer_3: '',
+        category_id: '',
+        user_answer: ''
+      }
+  const [selectedQuestion, setSelectedQuestion] = useState(emptyQuestion)
+  const selectQuestion = (question) => {
+    setSelectedQuestion(question)
+  }
+  
+
+  const handleCreateCategory = async (newItem) => {
+      try{
+        const category = await fetch(url + '/categories/', {
+          method: 'post',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newItem)
+        })
+        const response = await category.json()
+        getCategories()
+        setCreatedCategory(response)
+        console.log('handleCreate category', response)
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
+  const handleCreateQuestion = async (newItem) => {
+      try{
+          const question = await fetch(url + '/categories/' + newItem.category_id + '/questions', {
+          method: 'post',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newItem)
+        })
+        const response = await question.json()
+        getCategories()
+        console.log('handleCreate question', response)
+      } catch (error) {
+        console.log(error)
+      }
+  }
 
   const url = 'http://localhost:3000'
   // const url = 'https://quiz-app-kr-backend.herokuapp.com'
@@ -66,11 +128,14 @@ function App() {
                 </>
             )}/>
                 
-            <Route exact path='/customquestion'>
-                <Form />
-            </Route>
+            <Route exact path='/customcategory' render={(rp) => (
+                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} label="Add"/>
+            )}/>
+            <Route exact path='/customquestion' render={(rp) => (
+                <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreateQuestion} createdCategory={createdCategory} label="Add"/>
+            )}/>
             <Route exact path='/editquestion'>
-                <Form />
+                <CategoryForm />
             </Route>
             <Route exact path='/customlist'>
                 <CustomQs />
