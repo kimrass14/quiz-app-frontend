@@ -1,12 +1,14 @@
-import React, {useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import * as d3 from 'd3'
 import './BubbleChart.scss'
 import { scaleSqrt } from 'd3'
 
 const BubbleChart = (props) => {
-    const dataArr = props.dataSet
 
-    // const dataSet = [
+//RECEIVING UPDATED DATA UPON USER SELECTING CORRECT ANSWER
+//BUT CHART IS NOT RE-RENDERING
+
+    // TEST DATA const dataSet = [
     //     {"id": 1, "name": "Science", "num": 0},
     //     {"id": 2, "name": "Math", "num": 9},
     //     {"id": 3, "name": "Geography", "num": 15},
@@ -14,17 +16,22 @@ const BubbleChart = (props) => {
     //     {"id": 5, "name": "General", "num": 25},
     // ]
 
-    // const [dataSet, setDataSet] = useState(score)
-    // console.log('dataset', dataSet)
+    const something = 8
+
+    const [dataArr, setDataArr] = useState([])
+    console.log('dataset', dataArr)
+
+    useEffect(() => {
+        setDataArr(props.dataSet)
+    }, [])
+    
+
     const gRef = useRef()
 
-    // useEffect(() => {
-    //     ready()
-    // }, [dataSet])
 
     //scaleSqrt bc circles. Domain is range in dataset
     //range is min and max size I want the circles to be
-    const radiusScale = d3.scaleSqrt().domain([0, 25]).range([10, 50])
+    const radiusScale = d3.scaleSqrt().domain([0, 25]).range([10, 100])
 
    
     const simulation = d3.forceSimulation()

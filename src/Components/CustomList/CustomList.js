@@ -3,10 +3,10 @@ import CustomQsList from '../CustomQsList/CustomQsList'
 import './CustomList.scss'
 
 const CustomList = (props) => {
-    console.log('custom list props', props)
+    // console.log('custom list props', props)
 
     const loaded = props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
-        console.log('custom category', customCategory)
+        // console.log('custom category', customCategory)
 
         return(
             <div className="custom-list">

@@ -5,13 +5,9 @@ import './Quiz.scss'
 const Quiz = (props) => {
     console.log('quiz props', props)
 
-    // const [question, setQuestion] = useState([])
-
-    const questionsArr = props.selectedCatAndQuestions.questions
-
     const loaded = () => {
         console.log('loaded')
-        const incorrectQsArr = questionsArr.filter(question => question.user_answer !== "correct")
+        const incorrectQsArr = props.selectedCatAndQuestions.questions.filter(question => question.user_answer !== "correct")
         const shuffledIncorrectQs = incorrectQsArr.sort(() => Math.random() - 0.5)
         console.log('shuffled', shuffledIncorrectQs)
         
@@ -22,20 +18,26 @@ const Quiz = (props) => {
         return(
             <>
                 <div>{shuffledIncorrectQs[0].quiz_question}</div>
-                <MultipleChoice question={shuffledIncorrectQs[0]} url={props.url}/>
+                <MultipleChoice question={shuffledIncorrectQs[0]} url={props.url} getCategories={props.getCategories}/>
             </>
         )
     }
-    
     
     const noMoreIncorrect = "You answered all questions correctly!"
 
     return(
         <div className="quiz">
             <div>Quiz</div>
-            {questionsArr ? loaded() : <div>{noMoreIncorrect}</div>}
-            {/* <MultipleChoice question={question[0]} url={props.url}/> */}
-            <button onClick={() => {props.handleGetCatQuestions(props.selectedCatAndQuestions)}}>Next</button>
+            {props.selectedCatAndQuestions.questions && props.selectedCatAndQuestions.questions.length > 0 ? loaded() : noMoreIncorrect}
+            
+            <button onClick={() => {
+                props.handleGetCatQuestions(props.selectedCatAndQuestions)}}>Next
+            </button>
+            {/* <button onClick={() => {
+                props.handleGetCatQuestions(props.selectedCatAndQuestions)
+                props.history.push('/q')}}>
+                Next
+            </button> */}
         </div>
     )
 }

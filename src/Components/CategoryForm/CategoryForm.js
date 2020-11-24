@@ -3,12 +3,12 @@ import {withRouter} from 'react-router-dom'
 import './CategoryForm.scss'
 
 const CategoryForm = (props) => {
-    console.log('form new category', props.createdCategory)
+    // console.log('form new category', props.createdCategory)
     
     const [formData, setFormData] = useState(props.selectedCategory)
 
-    const loaded = props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
-        console.log('custom category', customCategory)
+    const loaded = () => { return props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
+        // console.log('custom category', customCategory)
 
         return(
             <>
@@ -17,6 +17,7 @@ const CategoryForm = (props) => {
             </>
         )
     })
+}
 
     const handleSelect = (event) => {
         console.log('event', event)
@@ -63,7 +64,7 @@ const CategoryForm = (props) => {
                     <label for="categories">Category</label>
                     <div>
                         <select id="categories" name="categories" onChange={handleSelect}>
-                            {loaded}
+                            {loaded()}
                         </select>
                     </div>
                 </div>

@@ -81,7 +81,7 @@ function App() {
       try{
         const response = await fetch(url + '/categories')
         const data = await response.json()
-        console.log(data)
+        console.log('get categories', data)
         setCategories(data)
       } catch (error) {
         console.log(error)
@@ -171,11 +171,14 @@ function App() {
           <Switch>
             <Route exact path='/' render={(rp) => (
                 <Homepage {...rp}/>
-            )}/>  
+            )}/> 
+            {/* <Route path='/q' render={(rp) => (
+                <BubbleData {...rp} categories={categories}/>
+            )}/>  */}
             
             <Route exact path='/quiz' render={(rp) => (
                 <>
-                  <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url}/>
+                  <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories}/>
                   <BubbleData {...rp} categories={categories}/>
                 </>
             )}/>

@@ -31,6 +31,7 @@ const MultipleChoice = (props) => {
                     const res = await response.json()
                     console.log('updated user answer in db', res)
                     
+                    props.getCategories()
                     
                 } catch (error) {
                     console.log(error)
