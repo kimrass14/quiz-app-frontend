@@ -33,7 +33,7 @@ const QuestionForm = (props) => {
     return(
         <div className="create-question">
             <div>Add your own question here</div>
-            <div>{props.createdCategory.name}</div>
+            <div>Category: {props.createdCategory.name}</div>
             <form id="question-form" onSubmit={handleSubmit}>
                 <input
                     className="quiz-question"

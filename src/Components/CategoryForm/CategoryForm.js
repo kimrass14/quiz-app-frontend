@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {withRouter} from 'react-router-dom'
 import {Link, route} from 'react-router-dom'
 import './CategoryForm.scss'
 
@@ -17,7 +18,7 @@ const CategoryForm = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         props.handleSubmit(formData)
-        
+        props.history.push(props.route)
     }
 
     return(
@@ -32,9 +33,9 @@ const CategoryForm = (props) => {
                     placeholder="Category name"
                     onChange={handleChange}
                 />
-                  <div className="btn-div"><input type='submit' value={props.label} className="button" onClick={() => {props.history.push(props.route)}}/></div>
+                  <div className="btn-div"><input type='submit' value={props.label} className="button"/></div>
             </form>
         </div>
     )
 }
-export default CategoryForm
+export default withRouter(CategoryForm)
