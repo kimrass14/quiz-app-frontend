@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import './Form.scss'
+import './CategoryForm.scss'
 
-const Form = (props) => {
+const CategoryForm = (props) => {
+    console.log('form new category', props.createdCategory)
     
     const [formData, setFormData] = useState(props.selectedQuestion)
 
@@ -18,9 +19,9 @@ const Form = (props) => {
     }
 
     return(
-        <div className="form">
+        <div className="category-form">
             <div>Form</div>
-            <form id="form" onSubmit={handleSubmit}>
+            <form id="cat-form" onSubmit={handleSubmit}>
                 <input
                     className="category"
                     type="text"
@@ -29,6 +30,12 @@ const Form = (props) => {
                     placeholder="Category name"
                     onChange={handleChange}
                 />
+                  <div className="btn-div">
+					<input type='submit' value={props.label} className="button" to='/customquestion'/>
+					{/* <input type='submit' value='Update' className="button"/> */}
+				</div>
+            </form>
+            <form>
                 {/* <input
                     className="question"
                     type="text"
@@ -70,14 +77,8 @@ const Form = (props) => {
                     placeholder="Other choice"
                     onChange="UPDATE"
                 /> */}
-
-                <div className="btn-div">
-					<input type='submit' value='Add' className="button"/>
-					<input type='submit' value='Update' className="button"/>
-				</div>
-
             </form>
         </div>
     )
 }
-export default Form
+export default CategoryForm

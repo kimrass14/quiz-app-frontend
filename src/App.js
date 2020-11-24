@@ -4,18 +4,20 @@ import './App.scss';
 import BubbleChart from './Components/BubbleChart/BubbleChart';
 import Homepage from './Components/Homepage/Homepage';
 import Quiz from './Components/Quiz/Quiz';
-import Form from './Components/Form/Form';
+import CategoryForm from './Components/CategoryForm/CategoryForm';
 import Nav from './Components/Nav/Nav';
 import CustomQs from './Components/CustomQs/CustomQs'
+import QuestionForm from './Components/QuestionForm/QuestionForm';
 
 function App() {
   const [categories, setCategories] = useState([])
   const [selectedCatAndQuestions, setSelectedCatAndQuestions] = useState({})
+  const [createdCategory, setCreatedCategory] = useState({})
 
   const emptyForm = {
     name: '',
     created: '',
-    questions: [
+    questions:[
       {
         quiz_question: '',
         correct_answer: '',
@@ -44,7 +46,14 @@ function App() {
         })
         const response = await category.json()
         getCategories()
+        setCreatedCategory(response)
         console.log('handleCreate newitem', response)
+
+        //wait for response then run second post for question related to newly
+        //created category so we have the id??
+
+        //if not make category separate form that needs to be created first
+        //drop down to select already created categories
       } catch (error) {
         console.log(error)
       }
@@ -104,11 +113,14 @@ function App() {
                 </>
             )}/>
                 
+            <Route exact path='/customcategory' render={(rp) => (
+                <CategoryForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreate} label="Add"/>
+            )}/>
             <Route exact path='/customquestion' render={(rp) => (
-                <Form {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreate}/>
+                <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreate} createdCategory={createdCategory} label="Add"/>
             )}/>
             <Route exact path='/editquestion'>
-                <Form />
+                <CategoryForm />
             </Route>
             <Route exact path='/customlist'>
                 <CustomQs />
