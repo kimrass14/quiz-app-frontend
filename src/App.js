@@ -39,7 +39,7 @@ function App() {
   }
   
 
-  const handleCreate = async (newItem) => {
+  const handleCreateCategory = async (newItem) => {
       try{
         const category = await fetch(url + '/categories/', {
           method: 'post',
@@ -51,20 +51,27 @@ function App() {
         const response = await category.json()
         getCategories()
         setCreatedCategory(response)
-        console.log('handleCreate newitem', response)
-
-        //wait for response then run second post for question related to newly
-        //created category so we have the id??
-
-        //if not make category separate form that needs to be created first
-        //drop down to select already created categories
+        console.log('handleCreate category', response)
       } catch (error) {
         console.log(error)
       }
   }
 
   const handleCreateQuestion = async (newItem) => {
-    
+      try{
+          const question = await fetch(url + '/categories/' + newItem.category_id + '/questions', {
+          method: 'post',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newItem)
+        })
+        const response = await question.json()
+        getCategories()
+        console.log('handleCreate question', response)
+      } catch (error) {
+        console.log(error)
+      }
   }
 
   const url = 'http://localhost:3000'
@@ -122,7 +129,7 @@ function App() {
             )}/>
                 
             <Route exact path='/customcategory' render={(rp) => (
-                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreate} label="Add"/>
+                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} label="Add"/>
             )}/>
             <Route exact path='/customquestion' render={(rp) => (
                 <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreateQuestion} createdCategory={createdCategory} label="Add"/>

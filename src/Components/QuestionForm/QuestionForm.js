@@ -13,7 +13,7 @@ const QuestionForm = (props) => {
     const handleChange = (e) => {
         const key = e.target.name
         const value = e.target.value
-        setFormData({...formData, [key]: value, "category_id": props.createdCategory.id})
+        setFormData({...formData, [key]: value, "category_id": props.createdCategory.id, "user_answer": "incorrect"})
         console.log('formData', formData)
     }
 
