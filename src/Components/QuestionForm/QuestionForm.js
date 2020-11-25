@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import './QuestionForm.scss'
 
 const QuestionForm = (props) => {
     console.log('question form props', props)
     
     const [formData, setFormData] = useState(props.selectedQuestion)
-    const [state, setState] = useState()
+    // const [state, setState] = useState()
 
     const handleChange = (e) => {
         const key = e.target.name
@@ -32,15 +32,15 @@ const QuestionForm = (props) => {
 
     return(
         <div className="create-question">
-            <div>Add your own question here</div>
-            <div>Category: {props.createdCategory.name}</div>
-            <form id="question-form" onSubmit={handleSubmit}>
+            <div>Add questions for your category</div>
+            <div className="created-cat">{props.createdCategory.name}</div>
+            <form className="question-form" onSubmit={handleSubmit}>
                 <input
                     className="quiz-question"
                     type="text"
                     name="quiz_question"
                     value={formData.quiz_question}
-                    placeholder="Question"
+                    placeholder="?"
                     onChange={handleChange}
                 />
                 <input
@@ -48,7 +48,7 @@ const QuestionForm = (props) => {
                     type="text"
                     name="correct_answer"
                     value={formData.correct_answer}
-                    placeholder="Correct answer"
+                    placeholder="answer"
                     onChange={handleChange}
                 />
                 <input
@@ -56,7 +56,7 @@ const QuestionForm = (props) => {
                     type="text"
                     name="incorrect_answer_1"
                     value={formData.incorrect_answer_1}
-                    placeholder="Multiple choice"
+                    placeholder="1"
                     onChange={handleChange}
                 />
                 <input
@@ -64,7 +64,7 @@ const QuestionForm = (props) => {
                     type="text"
                     name="incorrect_answer_2"
                     value={formData.incorrect_answer_2}
-                    placeholder="Multiple choice"
+                    placeholder="2"
                     onChange={handleChange}
                 />
                 <input
@@ -72,7 +72,7 @@ const QuestionForm = (props) => {
                     type="text"
                     name="incorrect_answer_3"
                     value={formData.incorrect_answer_3}
-                    placeholder="Multiple choice"
+                    placeholder="3"
                     onChange={handleChange}
                 />
                 <div className="btn-div">

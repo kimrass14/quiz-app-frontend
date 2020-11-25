@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import {withRouter} from 'react-router-dom'
-import {Link, route} from 'react-router-dom'
 import './CategoryForm.scss'
 
 const CategoryForm = (props) => {
-    console.log('form new category', props.createdCategory)
+    // console.log('form new category', props.createdCategory)
     
     const [formData, setFormData] = useState(props.selectedCategory)
 
-    const loaded = props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
-        console.log('custom category', customCategory)
+    const loaded = () => { return props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
+        // console.log('custom category', customCategory)
 
         return(
             <>
@@ -18,6 +17,7 @@ const CategoryForm = (props) => {
             </>
         )
     })
+}
 
     const handleSelect = (event) => {
         console.log('event', event)
@@ -47,24 +47,24 @@ const CategoryForm = (props) => {
 
     return(
         <div className="category-form">
-            <div>Form</div>
+            <div>Create your own quiz</div>
             <form id="cat-form" onSubmit={handleSubmit}>
                 <input
                     className="category"
                     type="text"
                     name="name"
                     value={formData.name}
-                    placeholder="Category name"
+                    placeholder="add a category"
                     onChange={handleChange}
                 />
                   <div className="btn-div"><input type='submit' value={props.label} className="button"/></div>
             </form>
             {props.categories ? 
                 <div className="dropdown">
-                    <label for="categories">Category</label>
+                    <label for="categories">Select one you already created</label>
                     <div>
                         <select id="categories" name="categories" onChange={handleSelect}>
-                            {loaded}
+                            {loaded()}
                         </select>
                     </div>
                 </div>

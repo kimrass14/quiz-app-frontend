@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Route, Link, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import './App.scss';
-import BubbleChart from './Components/BubbleChart/BubbleChart';
 import Homepage from './Components/Homepage/Homepage';
 import Quiz from './Components/Quiz/Quiz';
 import CategoryForm from './Components/CategoryForm/CategoryForm';
@@ -38,6 +37,12 @@ function App() {
   const selectQuestion = (question) => {
     setSelectedQuestion(question)
   }
+
+  const [counter, setCounter] = useState(0)
+  const addCount = () => {
+    setCounter(counter + 1)
+  }
+  console.log('counter', counter)
 
   const url = 'http://localhost:3000'
   // const url = 'https://quiz-app-kr-backend.herokuapp.com'
@@ -82,7 +87,7 @@ function App() {
       try{
         const response = await fetch(url + '/categories')
         const data = await response.json()
-        console.log(data)
+        console.log('get categories', data)
         setCategories(data)
       } catch (error) {
         console.log(error)
@@ -172,12 +177,15 @@ function App() {
           <Switch>
             <Route exact path='/' render={(rp) => (
                 <Homepage {...rp}/>
-            )}/>  
+            )}/> 
+            {/* <Route path='/q' render={(rp) => (
+                <BubbleData {...rp} categories={categories}/>
+            )}/>  */}
             
             <Route exact path='/quiz' render={(rp) => (
                 <>
-                  <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url}/>
-                  <BubbleData {...rp}/>
+                  <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories} addCount={addCount}/>
+                  <BubbleData {...rp} categories={categories} counter={counter}/>
                 </>
             )}/>
                 

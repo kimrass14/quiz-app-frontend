@@ -1,9 +1,31 @@
 @import '../../variables.scss';
 
 .custom-list {
-    border: 1px solid black;
+    padding: 5%;
 
-    .category {
-        display: flex;
+    h2 {
+        font-size: 20px;
     }
+
+    .each-cat {
+        margin: 15px 0px;
+        border: solid black 1px;
+        padding: 10px;
+
+        .category {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .category-name {
+            color: black;
+        }
+
+        button {
+            font-size: 10px;
+        }
+    }
+
+    
 }

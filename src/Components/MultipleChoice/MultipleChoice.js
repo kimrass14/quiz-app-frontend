@@ -6,6 +6,7 @@ const MultipleChoice = (props) => {
 
     const [choices, setChoices] = useState([])
     const [message, setMessage] = useState("")
+    const [counter, setCounter] = useState(0)
 
     //passed as props from App
     // const url = 'http://localhost:3000'
@@ -13,6 +14,8 @@ const MultipleChoice = (props) => {
 
     const handleCompare = (userAnswer) => {
         if (userAnswer === questionObj.correct_answer) {
+
+            props.addCount()
 
             const updatedQuestionObj = {...questionObj}
             updatedQuestionObj.user_answer = "correct"
@@ -31,6 +34,7 @@ const MultipleChoice = (props) => {
                     const res = await response.json()
                     console.log('updated user answer in db', res)
                     
+                    props.getCategories()
                     
                 } catch (error) {
                     console.log(error)

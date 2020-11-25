@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { Dropdown } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Nav.scss'
@@ -16,7 +16,7 @@ const Nav = (props) => {
 
     return(
         <>
-            <Link to="/"><div className="app-name">The Quiz</div></Link>
+            <Link to="/"><div className="app-name">the.Learn</div></Link>
             <Link to="/customcategory"><div className="custom-link">Create</div></Link>
             <Link to="/customlist"><div className="custom-link">View</div></Link>
             <Dropdown>
