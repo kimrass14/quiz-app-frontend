@@ -18,7 +18,6 @@ const QuestionForm = (props) => {
         event.preventDefault()
         props.handleSubmit(formData)
     }
-
     
 
     const handleReset = () => {

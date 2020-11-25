@@ -10,9 +10,9 @@ const CustomList = (props) => {
 
         return(
         
-            <div className="each-cat">
+            <div className="each-cat" key={index}>
                 <div className="category">
-                    <div className="category-name" key={index}>Category: {customCategory.name}</div>
+                    <div className="category-name" >Category: {customCategory.name}</div>
                     <div className="button-div">
                         <button 
                             onClick={() => {
@@ -23,7 +23,7 @@ const CustomList = (props) => {
                         <button onClick={() => {props.handleDelete(customCategory)}}>Delete</button>
                     </div>
                 </div>
-                <CustomQsList customCategory={customCategory} handleDelete={props.handleDeleteQs}/>
+                <CustomQsList customCategory={customCategory} handleDelete={props.handleDeleteQs} selectQuestion={props.selectQuestion} catToUpdateQuestion={props.catToUpdateQuestion}/>
             </div>
         
         )

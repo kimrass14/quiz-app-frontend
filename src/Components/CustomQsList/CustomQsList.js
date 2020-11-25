@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import './CustomQsList.scss'
 
 const CustomQsList = (props) => {
@@ -8,15 +9,24 @@ const CustomQsList = (props) => {
         console.log('custom question', question)
 
         return(
-            <div className="questions-list">
-                    <div className="quiz-question" key={index}>Question: {question.quiz_question}</div>
+            <div className="questions-list" key={index}>
+                    <div className="quiz-question" >Question: {question.quiz_question}</div>
                     {/* <button 
                         onClick={() => {
                             props.selectCategory(customCategory)
                             props.history.push('/editcategory')}}>
                         Update
                     </button> */}
-                    <button onClick={() => {props.handleDelete(question)}}>Delete</button>
+                    <div className="button-div">
+                        <button 
+                            onClick={() => {
+                                props.catToUpdateQuestion(props.customCategory)
+                                props.selectQuestion(question)
+                                props.history.push('/editquestion')}}>
+                            Update
+                        </button>
+                        <button onClick={() => {props.handleDelete(question)}}>Delete</button>
+                    </div>
             </div>
         )
     })
@@ -29,4 +39,4 @@ const CustomQsList = (props) => {
         </>
     )
 }
-export default CustomQsList
+export default withRouter(CustomQsList)
