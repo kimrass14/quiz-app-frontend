@@ -50,20 +50,34 @@ const BubbleChart = (props) => {
             // .attr("cy", 125)
         console.log('circles', circles)
 
-        const text = d3
+        const label = d3
             .select(gRef.current)
             .selectAll("text")
             .data(dataArr)
             .enter().append("text")
+            .attr("class", "name")
             .text(function(d) {
                 return d.name + ": " + d.correct_count
             })
-            // .attr("x", 125)
-            // .attr("y", 125)
-            // .attr("dy", ".2em")
+            .attr("dy", ".2em")
             .style("text-anchor", "middle")
             .attr("font-family", "sans-serif")
             .attr("color", "black")
+            .style("font-size", "2px")
+            .each(getSize)
+            .style("font-size", function(d) {
+                return d.scale + "px"
+            })
+        
+
+
+            function getSize(d) {
+                let bbox = this.getBBox(),
+                    cbbox = this.parentNode.getBBox(),
+                    scale = Math.min(cbbox.width/bbox.width, cbbox.height/bbox.height);
+                d.scale = scale;
+            }
+        
 
         //tick function for simulations. pretty standard.
         const ticked = () => {
@@ -75,11 +89,11 @@ const BubbleChart = (props) => {
                     return d.y
                 });
 
-            text
-                .attr("cx", function(d) {
+            label
+                .attr("x", function(d) {
                     return d.x
                 })
-                .attr("cy", function(d) {
+                .attr("y", function(d) {
                     return d.y
                 })
         }
@@ -94,8 +108,8 @@ const BubbleChart = (props) => {
         //at every tick of clock, run ticked function
         simulation.nodes(dataArr)
             .on('tick', ticked)
-    }, [])
-    // }, [props.dataSet])
+
+    }, [props.dataSet])
 
 
     return(
