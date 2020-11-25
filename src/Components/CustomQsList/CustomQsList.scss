@@ -2,4 +2,10 @@
 
 .questions-list {
     display: flex;
+    justify-content: space-between;
+
+    div {
+        font-size: 15px;
+        color: $q-dark;
+    }
 }
