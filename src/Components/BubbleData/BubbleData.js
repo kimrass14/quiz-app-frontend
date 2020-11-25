@@ -10,7 +10,8 @@ const BubbleData = (props) => {
     //push each object into an array called dataSet
     
     let dataSet = []
-    const loaded = props.categories.map((category, index) => {
+    // let dataSetCount = []
+    const loaded = () => {return props.categories.map((category, index) => {
 
         // console.log('category questions', category.questions)
         const newArr = category.questions.filter(question => question.user_answer === "correct")
@@ -21,10 +22,26 @@ const BubbleData = (props) => {
         dataSet.push(categoryObj)
 
     })
+    }
+    //tried adding another item to the array as a counter, but d3 freaked out and crashed
+    // const dataSetCount = [...dataSet, props.counter]
+
     console.log('dataSet', dataSet)
+    // console.log('dataSet - count', dataSetCount)
     //returns array of objects. Each object is a category with id and count of correct
-    
-    //TEST DATA
+
+    return(
+        <>
+            <div>BubbleData</div>
+            <BubbleChart dataSet={dataSet} />
+            {/* <BubbleChart dataSet={dataSetCount} /> */}
+            {props.categories ? loaded() : <div>waiting</div>}
+        </>
+    ) 
+}
+export default BubbleData
+
+ //TEST DATA
     // const dataSet = [
     //     {id: 1, name: "Science", num: 0},
     //     {id: 2, name: "Math", num: 9},
@@ -32,13 +49,3 @@ const BubbleData = (props) => {
     //     {id: 4, name: "Music", num: 10},
     //     {id: 5, name: "General", num: 25},
     // ]
-
-    return(
-        <>
-            <div>BubbleData</div>
-            <BubbleChart dataSet={dataSet} />
-            {props.categories ? loaded : <div>waiting</div>}
-        </>
-    )
-}
-export default BubbleData

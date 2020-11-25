@@ -38,6 +38,12 @@ function App() {
     setSelectedQuestion(question)
   }
 
+  const [counter, setCounter] = useState(0)
+  const addCount = () => {
+    setCounter(counter + 1)
+  }
+  console.log('counter', counter)
+
   const url = 'http://localhost:3000'
   // const url = 'https://quiz-app-kr-backend.herokuapp.com'
   
@@ -178,8 +184,8 @@ function App() {
             
             <Route exact path='/quiz' render={(rp) => (
                 <>
-                  <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories}/>
-                  <BubbleData {...rp} categories={categories}/>
+                  <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories} addCount={addCount}/>
+                  <BubbleData {...rp} categories={categories} counter={counter}/>
                 </>
             )}/>
                 

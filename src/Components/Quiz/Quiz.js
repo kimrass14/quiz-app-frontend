@@ -6,7 +6,6 @@ const Quiz = (props) => {
     console.log('quiz props', props)
 
     const loaded = () => {
-        console.log('loaded')
         const incorrectQsArr = props.selectedCatAndQuestions.questions.filter(question => question.user_answer !== "correct")
         const shuffledIncorrectQs = incorrectQsArr.sort(() => Math.random() - 0.5)
         console.log('shuffled', shuffledIncorrectQs)
@@ -18,7 +17,7 @@ const Quiz = (props) => {
         return(
             <>
                 <div>{shuffledIncorrectQs[0].quiz_question}</div>
-                <MultipleChoice question={shuffledIncorrectQs[0]} url={props.url} getCategories={props.getCategories}/>
+                <MultipleChoice question={shuffledIncorrectQs[0]} url={props.url} getCategories={props.getCategories} addCount={props.addCount}/>
             </>
         )
     }

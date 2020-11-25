@@ -4,35 +4,21 @@ import './BubbleChart.scss'
 import { scaleSqrt } from 'd3'
 
 const BubbleChart = (props) => {
+    console.log('bubble chart props', props)
 
 //RECEIVING UPDATED DATA UPON USER SELECTING CORRECT ANSWER
 //BUT CHART IS NOT RE-RENDERING
 
-    // TEST DATA const dataSet = [
-    //     {"id": 1, "name": "Science", "num": 0},
-    //     {"id": 2, "name": "Math", "num": 9},
-    //     {"id": 3, "name": "Geography", "num": 15},
-    //     {"id": 4, "name": "Music", "num": 10},
-    //     {"id": 5, "name": "General", "num": 25},
-    // ]
-
-    const something = 8
-
-    const [dataArr, setDataArr] = useState([])
-    console.log('dataset', dataArr)
-
-    useEffect(() => {
-        setDataArr(props.dataSet)
-    }, [])
-    
-
+    const [dataArr, setDataArr] = useState(props.dataSet)
     const gRef = useRef()
 
+    // useEffect(() => {
+    //     setDataArr(props.dataSet)
+    // }, [props.dataSet])
 
     //scaleSqrt bc circles. Domain is range in dataset
     //range is min and max size I want the circles to be
     const radiusScale = d3.scaleSqrt().domain([0, 25]).range([10, 100])
-
    
     const simulation = d3.forceSimulation()
         .force("x", d3.forceX(250 /2).strength(.05))
@@ -41,10 +27,15 @@ const BubbleChart = (props) => {
             return radiusScale(d.correct_count) + 1
         }))
 
+    //data passed to dataArr state when useEffect is called. Supposed to change when counter changes
 
-    const ready = () => {
+    useEffect(() => {
+        setDataArr(props.dataSet)
+        console.log('dataArr', dataArr)
 
+        // const radiusScale = d3.scaleSqrt().domain([0, 25]).range([10, 100])
         //binding dataset to circle elements created within the g element
+
         const circles = d3
             .select(gRef.current)
             .selectAll("circle")
@@ -92,13 +83,20 @@ const BubbleChart = (props) => {
                     return d.y
                 })
         }
-
+        
+    // const simulation = d3.forceSimulation()
+    //     .force("x", d3.forceX(250 /2).strength(.05))
+    //     .force("y", d3.forceY(250 /2).strength(.05))
+    //     .force("collide", d3.forceCollide(function(d) {
+    //         return radiusScale(d.correct_count) + 1
+    //     }))
+        
         //at every tick of clock, run ticked function
         simulation.nodes(dataArr)
             .on('tick', ticked)
+    }, [])
+    // }, [props.dataSet])
 
-    }
-    ready()
 
     return(
         <div className="container">
