@@ -14,6 +14,10 @@ function App() {
   const [selectedCatAndQuestions, setSelectedCatAndQuestions] = useState({})
   const [createdCategory, setCreatedCategory] = useState({})
 
+  const catToUpdateQuestion = (category) => {
+    setCreatedCategory(category)
+  }
+
   const emptyCategory = {
     name: '',
     created: ''
@@ -132,6 +136,23 @@ function App() {
       }
   }
 
+  const handleUpdateQuestion = async (question) => {
+      try{
+          const updatedQuestion = await fetch(url + '/categories/' + question.category_id + '/questions/' + question.id, {
+          method: 'put',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(question)
+        })
+        const response = await updatedQuestion.json()
+        getCategories()
+        console.log('handleUpdate question', response)
+      } catch (error) {
+        console.log(error)
+      }
+  }
+
     const handleDeleteCategory = (category) => {
       // console.log('delete .then', category)
       fetch(url + '/categories/' + category.id, {
@@ -175,8 +196,11 @@ function App() {
             <Route exact path='/editcategory' render={(rp) => (
                 <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleUpdateCategory} label="Update" route="/editcategory"/>
             )}/>
+            <Route exact path='/editquestion' render={(rp) => (
+                <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleUpdateQuestion} createdCategory={createdCategory} label="Update"/>
+            )}/>
             <Route exact path='/customlist' render={(rp) => (
-                <CustomList {...rp} categories={categories} selectCategory={selectCategory} handleDelete={handleDeleteCategory} handleDeleteQs={handleDeleteQs}/>
+                <CustomList {...rp} categories={categories} selectCategory={selectCategory} catToUpdateQuestion={catToUpdateQuestion} selectQuestion={selectQuestion} handleDelete={handleDeleteCategory} handleDeleteQs={handleDeleteQs}/>
             )}/>
           </Switch>
         </main>

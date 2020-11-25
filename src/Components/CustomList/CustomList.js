@@ -23,7 +23,7 @@ const CustomList = (props) => {
                         <button onClick={() => {props.handleDelete(customCategory)}}>Delete</button>
                     </div>
                 </div>
-                <CustomQsList customCategory={customCategory} handleDelete={props.handleDeleteQs}/>
+                <CustomQsList customCategory={customCategory} handleDelete={props.handleDeleteQs} selectQuestion={props.selectQuestion} catToUpdateQuestion={props.catToUpdateQuestion}/>
             </div>
         
         )

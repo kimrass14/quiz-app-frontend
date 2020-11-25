@@ -1,4 +1,5 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import './CustomQsList.scss'
 
 const CustomQsList = (props) => {
@@ -16,7 +17,16 @@ const CustomQsList = (props) => {
                             props.history.push('/editcategory')}}>
                         Update
                     </button> */}
-                    <button onClick={() => {props.handleDelete(question)}}>Delete</button>
+                    <div className="button-div">
+                        <button 
+                            onClick={() => {
+                                props.catToUpdateQuestion(props.customCategory)
+                                props.selectQuestion(question)
+                                props.history.push('/editquestion')}}>
+                            Update
+                        </button>
+                        <button onClick={() => {props.handleDelete(question)}}>Delete</button>
+                    </div>
             </div>
         )
     })
@@ -29,4 +39,4 @@ const CustomQsList = (props) => {
         </>
     )
 }
-export default CustomQsList
+export default withRouter(CustomQsList)
