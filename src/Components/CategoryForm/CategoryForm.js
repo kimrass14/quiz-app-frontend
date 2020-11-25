@@ -47,21 +47,21 @@ const CategoryForm = (props) => {
 
     return(
         <div className="category-form">
-            <div>Form</div>
+            <div>Create your own quiz</div>
             <form id="cat-form" onSubmit={handleSubmit}>
                 <input
                     className="category"
                     type="text"
                     name="name"
                     value={formData.name}
-                    placeholder="Category name"
+                    placeholder="add a category"
                     onChange={handleChange}
                 />
                   <div className="btn-div"><input type='submit' value={props.label} className="button"/></div>
             </form>
             {props.categories ? 
                 <div className="dropdown">
-                    <label for="categories">Category</label>
+                    <label for="categories">Select one you already created</label>
                     <div>
                         <select id="categories" name="categories" onChange={handleSelect}>
                             {loaded()}

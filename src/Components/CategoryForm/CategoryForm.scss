@@ -1,5 +1,20 @@
 @import '../../variables.scss';
 
-form {
-    display: grid;
+
+.category-form {
+    padding: 5%;
+
+    div {
+        text-align: center;
+        margin: 10px;
+    }
+
+    form {
+        display: grid;
+
+        input[type=submit] {
+            background-color: $q-dark;
+            color: $q-medium;
+        }
+    }
 }

@@ -16,7 +16,7 @@ const Nav = (props) => {
 
     return(
         <>
-            <Link to="/"><div className="app-name">The Quiz</div></Link>
+            <Link to="/"><div className="app-name">the.Learn</div></Link>
             <Link to="/customcategory"><div className="custom-link">Create</div></Link>
             <Link to="/customlist"><div className="custom-link">View</div></Link>
             <Dropdown>
