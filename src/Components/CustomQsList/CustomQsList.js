@@ -8,8 +8,8 @@ const CustomQsList = (props) => {
         console.log('custom question', question)
 
         return(
-            <div className="questions-list">
-                    <div className="quiz-question" key={index}>Question: {question.quiz_question}</div>
+            <div className="questions-list" key={index}>
+                    <div className="quiz-question" >Question: {question.quiz_question}</div>
                     {/* <button 
                         onClick={() => {
                             props.selectCategory(customCategory)

@@ -10,9 +10,9 @@ const CustomList = (props) => {
 
         return(
         
-            <div className="each-cat">
+            <div className="each-cat" key={index}>
                 <div className="category">
-                    <div className="category-name" key={index}>Category: {customCategory.name}</div>
+                    <div className="category-name" >Category: {customCategory.name}</div>
                     <div className="button-div">
                         <button 
                             onClick={() => {

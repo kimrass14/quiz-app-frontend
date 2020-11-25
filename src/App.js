@@ -110,9 +110,9 @@ function App() {
         console.log(error)
       }
   }
-  useEffect(() => {
-    handleGetCatQuestions();
-  }, [])
+  // useEffect(() => {
+  //   handleGetCatQuestions();
+  // }, [])
   
   const handleUpdateCategory = async (category) => {
       try{
@@ -124,7 +124,7 @@ function App() {
           body: JSON.stringify(category)
         })
         const response = await updatedCategory.json()
-        // getCategories()
+        getCategories()
         // setCreatedCategory(response)
         console.log('handleUpdate category', response)
       } catch (error) {
@@ -132,41 +132,18 @@ function App() {
       }
   }
 
-    const handleDeleteCategory = async (category) => {
-        console.log('handle delete params', url + '/categories/' + category.id)
-        try {
-            const deletedCategory = await fetch(url + '/categories/' + category.id, {
-            method: 'delete',
-            // headers: {
-            //     'Content-Type': 'application/json'
-            // },
-            // body: JSON.stringify(category)
-          })
-          const response = await deletedCategory.json()
-          console.log('handleDelete category', response)
-          getCategories()
-        } catch (error) {
-          console.log(error)
-        }
-    }
+    const handleDeleteCategory = (category) => {
+      // console.log('delete .then', category)
+      fetch(url + '/categories/' + category.id, {
+        method: 'delete',
+      }).then((response) => getCategories());
+    };
 
-    const handleDeleteQs = async (question) => {
-        console.log('delete Q params', question)
-        try {
-            const deletedQuestion = await fetch(url + '/categories/' + question.category_id + '/questions/' + question.id, {
-            method: 'delete',
-            // headers: {
-            //     'Content-Type': 'application/json'
-            // },
-            // body: JSON.stringify(category)
-          })
-          const response = await deletedQuestion.json()
-          console.log('handleDelete question', response)
-          getCategories()
-        } catch (error) {
-          console.log(error)
-        }
-    }
+    const handleDeleteQs = (question) => {
+      fetch(url + '/categories/' + question.category_id + '/questions/' + question.id, {
+        method: 'delete',
+      }).then((response) => getCategories());
+    };
 
   return (
     <div className="App">
