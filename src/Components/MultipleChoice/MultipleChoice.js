@@ -5,7 +5,14 @@ const MultipleChoice = (props) => {
     console.log('mult choice props', props)
 
     const [choices, setChoices] = useState([])
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState(props.clearMessage)
+
+    //Message won't clear on click of next button
+    //But question with correctly only change if next button clicked
+    
+    // if (props.clearMessage === "") {
+    //     setMessage(props.clearMessage)
+    // }
 
     const handleCompare = (userAnswer) => {
         const questionObj = props.question
