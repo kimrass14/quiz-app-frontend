@@ -18,6 +18,11 @@ function App() {
     setCreatedCategory(category)
   }
 
+  const handleSubmitCatToQ = (category) => {
+    console.log('app handle submit - category obj', category)
+    setCreatedCategory(category)
+  }
+
   const emptyCategory = {
     name: '',
     created: ''
@@ -42,11 +47,14 @@ function App() {
     setSelectedQuestion(question)
   }
 
+  //DELETE COUNTER
   const [counter, setCounter] = useState(0)
   const addCount = () => {
     setCounter(counter + 1)
   }
   console.log('counter', counter)
+
+  
 
   const url = 'http://localhost:3000'
   // const url = 'https://quiz-app-kr-backend.herokuapp.com'
@@ -188,7 +196,7 @@ function App() {
             )}/>
                 
             <Route exact path='/customcategory' render={(rp) => (
-                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} categories={categories} label="Add" route="/customquestion"/>
+                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} categories={categories} handleSubmitCatToQ={handleSubmitCatToQ} label="Add" route="/customquestion"/>
             )}/>
             <Route exact path='/customquestion' render={(rp) => (
                 <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreateQuestion} createdCategory={createdCategory} label="Add"/>
