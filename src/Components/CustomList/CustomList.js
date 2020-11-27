@@ -5,6 +5,9 @@ import './CustomList.scss'
 const CustomList = (props) => {
     // console.log('custom list props', props)
 
+    //call getCategories here instead of at end of PUT fetch?
+    //had to remove getCategories call from put request bc it was sending another question in the quiz when correct answer was selected
+
     const loaded = props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
         // console.log('custom category', customCategory)
 

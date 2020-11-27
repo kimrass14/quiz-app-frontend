@@ -12,8 +12,13 @@ const Quiz = (props) => {
 
         return(
             <>
-                {shuffledIncorrectQs.length > 0 ? <div>{shuffledIncorrectQs[0].quiz_question}</div> : <div>You answered all questions correctly!</div>}
-                <MultipleChoice question={shuffledIncorrectQs[0]} url={props.url} getCategories={props.getCategories} addCount={props.addCount}/>
+                {shuffledIncorrectQs.length > 0 ? 
+                    <>
+                        <div>{shuffledIncorrectQs[0].quiz_question}</div>
+                        <MultipleChoice question={shuffledIncorrectQs[0]} url={props.url} addCount={props.addCount}/>
+                    </> 
+                    : <div>You answered all questions correctly!</div>}
+                
             </>
         )
     }
