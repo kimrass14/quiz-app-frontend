@@ -84,8 +84,8 @@ const CategoryForm = (props) => {
             {props.categories ? 
                 <form onSubmit={handleSubmitDropDown}>
                     <label>Select one you already created:    
-                        <select value='select value' onChange={handleChangeDropDown}>
-                            <option value="option value">Select</option>
+                        <select value={categoryToQsForm[1]} onChange={handleChangeDropDown}>
+                            {/* <option value="option value">Select</option> */}
                             {loaded()}
                         </select>
                     </label>
