@@ -16,7 +16,8 @@ const QuestionForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        props.handleSubmit(formData)
+        props.handleSubmit(formData, props.selectedQuestion)
+        //added second parameter - question selected to be updated to use in comparison in handle update function
     }
     
 

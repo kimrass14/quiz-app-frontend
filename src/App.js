@@ -18,6 +18,11 @@ function App() {
     setCreatedCategory(category)
   }
 
+  const handleSubmitCatToQ = (category) => {
+    console.log('app handle submit - category obj', category)
+    setCreatedCategory(category)
+  }
+
   const emptyCategory = {
     name: '',
     created: ''
@@ -42,11 +47,14 @@ function App() {
     setSelectedQuestion(question)
   }
 
+  //DELETE COUNTER
   const [counter, setCounter] = useState(0)
   const addCount = () => {
     setCounter(counter + 1)
   }
   console.log('counter', counter)
+
+  
 
   const url = 'http://localhost:3000'
   // const url = 'https://quiz-app-kr-backend.herokuapp.com'
@@ -136,7 +144,9 @@ function App() {
       }
   }
 
-  const handleUpdateQuestion = async (question) => {
+  const handleUpdateQuestion = async (question, questionBeforeUpdate) => {
+    console.log('handleupdate question', question)
+    console.log('handleupdate question', questionBeforeUpdate)
       try{
           const updatedQuestion = await fetch(url + '/categories/' + question.category_id + '/questions/' + question.id, {
           method: 'put',
@@ -146,7 +156,16 @@ function App() {
           body: JSON.stringify(question)
         })
         const response = await updatedQuestion.json()
-        getCategories()
+
+        if(question.user_answer === questionBeforeUpdate.user_answer) {
+          getCategories()
+        }
+
+        //Conditional for calling getCategories: 
+        //Both actions of updating question from View and when correct answer is selected by user
+        //calls this handleUpdateQuestion function
+        //However, calling getCategories renders a new question in the quiz just by user selecting the correct answer instead of when Next button is selected
+
         console.log('handleUpdate question', response)
       } catch (error) {
         console.log(error)
@@ -188,7 +207,7 @@ function App() {
             )}/>
                 
             <Route exact path='/customcategory' render={(rp) => (
-                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} categories={categories} label="Add" route="/customquestion"/>
+                <CategoryForm {...rp} selectedCategory={selectedCategory} handleSubmit={handleCreateCategory} categories={categories} handleSubmitCatToQ={handleSubmitCatToQ} label="Add" route="/customquestion"/>
             )}/>
             <Route exact path='/customquestion' render={(rp) => (
                 <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleCreateQuestion} createdCategory={createdCategory} label="Add"/>
@@ -200,7 +219,7 @@ function App() {
                 <QuestionForm {...rp} selectedQuestion={selectedQuestion} handleSubmit={handleUpdateQuestion} createdCategory={createdCategory} label="Update"/>
             )}/>
             <Route exact path='/customlist' render={(rp) => (
-                <CustomList {...rp} categories={categories} selectCategory={selectCategory} catToUpdateQuestion={catToUpdateQuestion} selectQuestion={selectQuestion} handleDelete={handleDeleteCategory} handleDeleteQs={handleDeleteQs}/>
+                <CustomList {...rp} categories={categories} selectCategory={selectCategory} catToUpdateQuestion={catToUpdateQuestion} selectQuestion={selectQuestion} handleDelete={handleDeleteCategory} handleDeleteQs={handleDeleteQs} />
             )}/>
           </Switch>
         </main>

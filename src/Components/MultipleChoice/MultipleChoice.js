@@ -5,17 +5,15 @@ const MultipleChoice = (props) => {
     console.log('mult choice props', props)
 
     const [choices, setChoices] = useState([])
-    const [message, setMessage] = useState("")
-    const [counter, setCounter] = useState(0)
+    const [message, setMessage] = useState()
 
-    //passed as props from App
-    // const url = 'http://localhost:3000'
-    // const url = 'https://quiz-app-kr-backend.herokuapp.com'
+    useEffect(() => {
+        setMessage(props.clearMessage)
+    }, [props])
 
     const handleCompare = (userAnswer) => {
+        const questionObj = props.question
         if (userAnswer === questionObj.correct_answer) {
-
-            props.addCount()
 
             const updatedQuestionObj = {...questionObj}
             updatedQuestionObj.user_answer = "correct"
@@ -34,7 +32,8 @@ const MultipleChoice = (props) => {
                     const res = await response.json()
                     console.log('updated user answer in db', res)
                     
-                    props.getCategories()
+                    //by calling the getCategories fetch it was updating the question to a new one
+                    // props.getCategories()
                     
                 } catch (error) {
                     console.log(error)
@@ -52,14 +51,15 @@ const MultipleChoice = (props) => {
         // )
     }
 
-    const questionObj = props.question
+    
 
     useEffect(() => {
+        const questionObj = props.question
         if (props.question) {
-        let choices = []
-        choices.push(questionObj.correct_answer, questionObj.incorrect_answer_1, questionObj.incorrect_answer_2, questionObj.incorrect_answer_3)
-        const shuffledChoices = choices.sort(() => Math.random() - 0.5)
-        setChoices(shuffledChoices)
+            let choices = []
+            choices.push(questionObj.correct_answer, questionObj.incorrect_answer_1, questionObj.incorrect_answer_2, questionObj.incorrect_answer_3)
+            const shuffledChoices = choices.sort(() => Math.random() - 0.5)
+            setChoices(shuffledChoices)
         }
     }, [props.question])
 

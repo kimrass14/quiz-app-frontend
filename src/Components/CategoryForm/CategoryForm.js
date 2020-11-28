@@ -6,25 +6,20 @@ const CategoryForm = (props) => {
     // console.log('form new category', props.createdCategory)
     
     const [formData, setFormData] = useState(props.selectedCategory)
+    const [categoryToQsForm, setCategoryToQsForm] = useState([])
+    console.log('category to question form', categoryToQsForm)
 
     const loaded = () => { return props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
         // console.log('custom category', customCategory)
 
         return(
             <>
-                <option value={customCategory} key={index}>{customCategory.name}</option>
-                {/* <option value={customCategory} onChange={handleSelect}>{customCategory.name}</option> */}
+                <option value={[customCategory.id, customCategory.name]} key={index}>{customCategory.name}</option>
             </>
         )
     })
 }
 
-    const handleSelect = (event) => {
-        console.log('event', event)
-    //VALUE IN OPTION TAG ISN'T BEING PASSED
-        // const category = event.target.value
-        // console.log('value', category)
-    }
 
     const loading = () => {
         return(
@@ -39,10 +34,37 @@ const CategoryForm = (props) => {
         console.log('formData', formData)
     }
 
+    
+
+
+    const handleChangeDropDown = (e) => {
+        console.log('handle change dropdown event', e)
+
+        //unable to pass the category obj in the value property of the option tag
+        //recreating the category object with id and name to pass to questions form
+        const targetArr = e.target.value.split(",")
+        const idInteger = parseInt(targetArr[0])
+        const categoryObj = {"id": idInteger, "name": targetArr[1]}
+        console.log('category object', categoryObj)
+
+        setCategoryToQsForm(categoryObj)
+        //({value: customCategory})
+        //need to pass category object? since it it's already created.
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         props.handleSubmit(formData)
         props.history.push(props.route)
+    }
+
+    
+    const handleSubmitDropDown = (event) => {
+        event.preventDefault()
+        props.handleSubmitCatToQ(categoryToQsForm)
+        props.history.push(props.route)
+        console.log('handle submit dropdown', event)
+        //pass category from dropdown to a handlesubmit function in app that passes category (need name and id) to questions form
     }
 
     return(
@@ -60,14 +82,15 @@ const CategoryForm = (props) => {
                   <div className="btn-div"><input type='submit' value={props.label} className="button"/></div>
             </form>
             {props.categories ? 
-                <div className="dropdown">
-                    <label for="categories">Select one you already created</label>
-                    <div>
-                        <select id="categories" name="categories" onChange={handleSelect}>
+                <form onSubmit={handleSubmitDropDown}>
+                    <label>Select one you already created:    
+                        <select value={categoryToQsForm[1]} onChange={handleChangeDropDown}>
+                            {/* <option value="option value">Select</option> */}
                             {loaded()}
                         </select>
-                    </div>
-                </div>
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
              : loading}
         </div>
     )
