@@ -12,14 +12,13 @@ const Quiz = (props) => {
     //         setMessage(message)
     //     }
 
-    //REMOVE? GETTING ERROR FROM CATEGORIES RESET ROUTE
     const handleResetCategory = (category) => {
         fetch(props.url + '/categories/' + category.id + '/reset', {
             method: 'put',
         }).then(response => props.handleGetCatQuestions(category))
     }
 
-    //ADD RESET FOR ALL QUESTIONS BUTTON HERE?
+   
     const handleResetAll = (category) => {
         fetch(props.url + '/questionsreset', {
             method: 'put',
