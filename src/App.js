@@ -201,7 +201,9 @@ function App() {
             
             <Route exact path='/quiz' render={(rp) => (
                 <>
-                  <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories} addCount={addCount}/>
+                  {"name" in selectedCatAndQuestions ? 
+                    <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories} /> :
+                    <div>Select a category</div>}
                   <BubbleData {...rp} categories={categories} counter={counter}/>
                 </>
             )}/>
