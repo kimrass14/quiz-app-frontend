@@ -6,15 +6,18 @@ import { scaleSqrt } from 'd3'
 const BubbleChart = (props) => {
     console.log('bubble chart props', props)
 
-//RECEIVING UPDATED DATA UPON USER SELECTING CORRECT ANSWER
+//RECEIVING UPDATED DATA UPON USER SELECTING NEXT and CORRECT ANSWER selected
 //BUT CHART IS NOT RE-RENDERING
 
     const [dataArr, setDataArr] = useState(props.dataSet)
     const gRef = useRef()
 
-    // useEffect(() => {
-    //     setDataArr(props.dataSet)
-    // }, [props.dataSet])
+    useEffect(() => {
+        console.log('use effect dataSet', props.dataSet)
+        //returns the updated data set with correct count
+        setDataArr(props.dataSet)
+        console.log('dataArr', dataArr)
+    }, [props.dataSet])
 
     //scaleSqrt bc circles. Domain is range in dataset
     //range is min and max size I want the circles to be
@@ -30,8 +33,9 @@ const BubbleChart = (props) => {
     //data passed to dataArr state when useEffect is called. Supposed to change when counter changes
 
     useEffect(() => {
-        setDataArr(props.dataSet)
+        // setDataArr(props.dataSet)
         console.log('dataArr', dataArr)
+        //DATA ARRAY NOT UPDATING WITH UPDATED DATASET
 
         // const radiusScale = d3.scaleSqrt().domain([0, 25]).range([10, 100])
         //binding dataset to circle elements created within the g element

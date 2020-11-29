@@ -2,6 +2,7 @@ import React from 'react'
 import BubbleChart from '../BubbleChart/BubbleChart'
 
 const BubbleData = (props) => {
+    //PROPS CATEGORIES ISN'T GETTING PASSED UPDATED QUESTIONS WITH USER ANSWER UPDATES TO CORRECT
 
     //needs to receive:
     //list off all categories
@@ -11,6 +12,7 @@ const BubbleData = (props) => {
     
     let dataSet = []
     // let dataSetCount = []
+    
     const loaded = () => {return props.categories.map((category, index) => {
 
         // console.log('category questions', category.questions)
@@ -20,13 +22,16 @@ const BubbleData = (props) => {
 
         const categoryObj = {["id"]:category.id, ["name"]:category.name, ["correct_count"]:count}
         dataSet.push(categoryObj)
+        console.log('dataSet', dataSet)
+        //create dataSet state
+        //spread dataSet variable and add each category obj to it
 
     })
     }
     //tried adding another item to the array as a counter, but d3 freaked out and crashed
     // const dataSetCount = [...dataSet, props.counter]
 
-    console.log('dataSet', dataSet)
+    
     // console.log('dataSet - count', dataSetCount)
     //returns array of objects. Each object is a category with id and count of correct
 

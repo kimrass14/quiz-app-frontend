@@ -56,8 +56,8 @@ function App() {
 
   
 
-  const url = 'http://localhost:3000'
-  // const url = 'https://quiz-app-kr-backend.herokuapp.com'
+  // const url = 'http://localhost:3000'
+  const url = 'https://quiz-app-kr-backend.herokuapp.com'
   
 
   const handleCreateCategory = async (newItem) => {
