@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import './MultipleChoice.scss'
 
 const MultipleChoice = (props) => {
-    console.log('mult choice props', props)
+    // console.log('mult choice props', props)
 
     const [choices, setChoices] = useState([])
     const [message, setMessage] = useState()
@@ -30,7 +30,7 @@ const MultipleChoice = (props) => {
                         body: JSON.stringify(updatedQuestion)
                     })
                     const res = await response.json()
-                    console.log('updated user answer in db', res)
+                    // console.log('updated user answer in db', res)
                     
                     //by calling the getCategories fetch it was updating the question to a new one
                     // props.getCategories()

@@ -47,12 +47,7 @@ function App() {
     setSelectedQuestion(question)
   }
 
-  //DELETE COUNTER
-  const [counter, setCounter] = useState(0)
-  const addCount = () => {
-    setCounter(counter + 1)
-  }
-  console.log('counter', counter)
+ 
 
   
 
@@ -100,6 +95,7 @@ function App() {
         const response = await fetch(url + '/categories')
         const data = await response.json()
         console.log('get categories', data)
+        //onclick of next button, returning updated data with user_answer = correct
         setCategories(data)
       } catch (error) {
         console.log(error)
@@ -111,7 +107,7 @@ function App() {
   }, [])
 
   const handleGetCatQuestions = async (category) => {
-    console.log('handle get cat questions', category)
+    // console.log('handle get cat questions', category)
       try{
           const response = await fetch(url + '/categories/' + category.id)
           const data = await response.json()
@@ -204,7 +200,7 @@ function App() {
                   {"name" in selectedCatAndQuestions ? 
                     <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories} /> :
                     <div className="select-cat">Select a category</div>}
-                  <BubbleData {...rp} categories={categories} counter={counter}/>
+                  <BubbleData {...rp} categories={categories} />
                 </>
             )}/>
                 

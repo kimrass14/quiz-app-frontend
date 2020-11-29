@@ -4,7 +4,7 @@ import MultipleChoice from '../MultipleChoice/MultipleChoice'
 import './Quiz.scss'
 
 const Quiz = (props) => {
-    console.log('quiz props', props)
+    // console.log('quiz props', props)
 
     const [clearMessage, setClearMessage] = useState("")
 
@@ -45,7 +45,7 @@ const Quiz = (props) => {
                         <MultipleChoice question={shuffledIncorrectQs[0]} url={props.url} clearMessage={clearMessage}/>
                         <button onClick={() => {
                             props.handleGetCatQuestions(props.selectedCatAndQuestions)
-                            // props.getCategories() trying to get bubblechart data to update
+                            props.getCategories()
                             setClearMessage("")
                             }}>Next
                         </button>

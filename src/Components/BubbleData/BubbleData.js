@@ -22,7 +22,7 @@ const BubbleData = (props) => {
 
         const categoryObj = {["id"]:category.id, ["name"]:category.name, ["correct_count"]:count}
         dataSet.push(categoryObj)
-        console.log('dataSet', dataSet)
+        // console.log('dataSet', dataSet)
         //create dataSet state
         //spread dataSet variable and add each category obj to it
 

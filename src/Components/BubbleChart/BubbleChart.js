@@ -4,61 +4,50 @@ import './BubbleChart.scss'
 import { scaleSqrt } from 'd3'
 
 const BubbleChart = (props) => {
-    console.log('bubble chart props', props)
-
-//RECEIVING UPDATED DATA UPON USER SELECTING NEXT and CORRECT ANSWER selected
-//BUT CHART IS NOT RE-RENDERING
+    // console.log('bubble chart props', props)
 
     const [dataArr, setDataArr] = useState(props.dataSet)
     const gRef = useRef()
 
     useEffect(() => {
         console.log('use effect dataSet', props.dataSet)
-        //returns the updated data set with correct count
+        
         setDataArr(props.dataSet)
         console.log('dataArr', dataArr)
     }, [props.dataSet])
+    // }, [props.dataSet[0].correct_count])
+// }, [...props.dataSet.map(item => item.correct_count)])
 
     //scaleSqrt bc circles. Domain is range in dataset
     //range is min and max size I want the circles to be
     const radiusScale = d3.scaleSqrt().domain([0, 15]).range([30, 100])
    
     const simulation = d3.forceSimulation()
-        .force("x", d3.forceX(400 /2).strength(.05))
-        .force("y", d3.forceY(300 /2).strength(.05))
+        .force("x", d3.forceX(400 /2).strength(.04))
+        .force("y", d3.forceY(300 /2).strength(.04))
         .force("collide", d3.forceCollide(function(d) {
             return radiusScale(d.correct_count) + 1
         }))
 
-    //data passed to dataArr state when useEffect is called. Supposed to change when counter changes
-
     useEffect(() => {
-        // setDataArr(props.dataSet)
         console.log('dataArr', dataArr)
-        //DATA ARRAY NOT UPDATING WITH UPDATED DATASET
 
-        // const radiusScale = d3.scaleSqrt().domain([0, 25]).range([10, 100])
-        //binding dataset to circle elements created within the g element
-
-        const circles = d3
+         const circles = d3
             .select(gRef.current)
             .selectAll("circle")
             .data(dataArr)
-            .enter().append("circle")
-            .attr("class", "category")
+            .join("circle")
             .attr("r", function(d) {
                 return radiusScale(d.correct_count)
             })
             .attr("fill", "white")
-            // .attr("cx", 125)
-            // .attr("cy", 125)
-        console.log('circles', circles)
+            .attr("class", "category")
 
         const label = d3
             .select(gRef.current)
             .selectAll("text")
             .data(dataArr)
-            .enter().append("text")
+            .join("text")
             .attr("class", "name")
             .text(function(d) {
                 return d.name + ": " + d.correct_count
@@ -73,8 +62,6 @@ const BubbleChart = (props) => {
                 return d.scale + "px"
             })
         
-
-
             function getSize(d) {
                 let bbox = this.getBBox(),
                     cbbox = this.parentNode.getBBox(),
@@ -83,7 +70,7 @@ const BubbleChart = (props) => {
             }
         
 
-        //tick function for simulations. pretty standard.
+        //tick function for simulations. standard function.
         const ticked = () => {
             circles
                 .attr("cx", function(d) {
@@ -102,18 +89,12 @@ const BubbleChart = (props) => {
                 })
         }
         
-    // const simulation = d3.forceSimulation()
-    //     .force("x", d3.forceX(250 /2).strength(.05))
-    //     .force("y", d3.forceY(250 /2).strength(.05))
-    //     .force("collide", d3.forceCollide(function(d) {
-    //         return radiusScale(d.correct_count) + 1
-    //     }))
-        
         //at every tick of clock, run ticked function
         simulation.nodes(dataArr)
             .on('tick', ticked)
 
-    }, [props.dataSet])
+    }, [dataArr])
+    // }, [...dataArr.map(item => item.correct_count)])
 
 
     return(
