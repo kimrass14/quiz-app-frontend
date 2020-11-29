@@ -21,11 +21,11 @@ const BubbleChart = (props) => {
 
     //scaleSqrt bc circles. Domain is range in dataset
     //range is min and max size I want the circles to be
-    const radiusScale = d3.scaleSqrt().domain([0, 25]).range([10, 100])
+    const radiusScale = d3.scaleSqrt().domain([0, 15]).range([30, 100])
    
     const simulation = d3.forceSimulation()
-        .force("x", d3.forceX(250 /2).strength(.05))
-        .force("y", d3.forceY(250 /2).strength(.05))
+        .force("x", d3.forceX(400 /2).strength(.05))
+        .force("y", d3.forceY(300 /2).strength(.05))
         .force("collide", d3.forceCollide(function(d) {
             return radiusScale(d.correct_count) + 1
         }))
@@ -118,7 +118,7 @@ const BubbleChart = (props) => {
 
     return(
         <div className="container">
-            <div>BubbleChart</div>
+            {/* <div>BubbleChart</div> */}
             <div id="viz">
             <svg>
                 <g ref={gRef} transform="translate(0,0)"></g>    

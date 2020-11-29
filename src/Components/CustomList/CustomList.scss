@@ -3,14 +3,17 @@
 .custom-list {
     padding: 5%;
 
-    h2 {
+    h3 {
         font-size: 20px;
+        text-align: center;
     }
 
     .each-cat {
         margin: 15px 0px;
-        border: solid black 1px;
+        // border: solid black 1px;
+        background-color: $q-dark;
         padding: 10px;
+        
 
         .category {
             display: flex;
@@ -19,11 +22,14 @@
         }
 
         .category-name {
-            color: black;
+            color: white;
+            font-family: $q-text;
         }
 
         button {
             font-size: 10px;
+            margin-left: 5px;
+            font-family: $q-text;
         }
     }
 

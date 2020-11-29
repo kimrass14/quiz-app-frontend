@@ -3,12 +3,19 @@
 .multiple-choice {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    // grid-template-rows: 1fr 1fr;
 
     input {
         padding: 5px;
+        font-family: $q-text;
+        background-color: $q-medium;
+        border: 1px solid $q-dark;
     }
 
     div {
         height: 35px;
+        text-align: center;
+        color: $q-dark;
+        padding: 5px;
     }
 }

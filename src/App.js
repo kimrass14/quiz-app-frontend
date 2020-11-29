@@ -203,7 +203,7 @@ function App() {
                 <>
                   {"name" in selectedCatAndQuestions ? 
                     <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories} /> :
-                    <div>Select a category</div>}
+                    <div className="select-cat">Select a category</div>}
                   <BubbleData {...rp} categories={categories} counter={counter}/>
                 </>
             )}/>

@@ -36,7 +36,7 @@ const CustomList = (props) => {
 
     return(
         <div className="custom-list">
-            <h2>Your categories and questions</h2>
+            <h3>Your categories and questions</h3>
             
                 {props.categories ? loaded : loading}
             

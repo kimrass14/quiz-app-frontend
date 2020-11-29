@@ -34,12 +34,14 @@ const Quiz = (props) => {
 
         return(
             <>
-                <div>{props.selectedCatAndQuestions.name}</div>
-                <button onClick={() => {handleResetCategory(props.selectedCatAndQuestions)}}>Reset Category</button>
-                <button onClick={() => {handleResetAll(props.selectedCatAndQuestions)}}>Reset All</button>
+                <div className="quiz-header">
+                    <h2>{props.selectedCatAndQuestions.name}</h2>
+                    <button onClick={() => {handleResetCategory(props.selectedCatAndQuestions)}}>Reset Category</button>
+                </div>
+                
                 {shuffledIncorrectQs.length > 0 ? 
                     <>
-                        <div>{shuffledIncorrectQs[0].quiz_question}</div>
+                        <div className="question">{shuffledIncorrectQs[0].quiz_question}</div>
                         <MultipleChoice question={shuffledIncorrectQs[0]} url={props.url} clearMessage={clearMessage}/>
                         <button onClick={() => {
                             props.handleGetCatQuestions(props.selectedCatAndQuestions)
@@ -48,7 +50,8 @@ const Quiz = (props) => {
                             }}>Next
                         </button>
                     </> 
-                    : <div>You answered all questions correctly!</div>}
+                    : <div className="all-correct">You answered all questions correctly!</div>}
+                <button className="reset-btn"onClick={() => {handleResetAll(props.selectedCatAndQuestions)}}>Reset All</button>
                 
             </>
         )
@@ -58,7 +61,7 @@ const Quiz = (props) => {
 
     return(
         <div className="quiz">
-            <div>Quiz</div>
+            {/* <div>Quiz</div> */}
             {props.selectedCatAndQuestions.questions && props.selectedCatAndQuestions.questions.length > 0 ? loaded() : noQuestions}
             {/* {message} */}
             

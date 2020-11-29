@@ -1,23 +1,47 @@
 @import '../../variables.scss';
 
 .quiz {
+    height: 45%;
     background-color: $q-light;
     padding: 5%;
-    border: solid black;
+    // border: solid black;
+
+    .quiz-header {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            font-size: 10px;
+            padding: 5px;
+            height: 30px;
+            margin-top: 8px;
+            font-family: $q-text;
+            // display: flex;
+            // align-items: center;
+            
+        }
+    }
 
     .question {
         background-color: $q-dark;
         color: $q-light;
+        font-family: $q-text;
         text-align: center;
         padding: 10px;
         width: 100%;
     }
 
+    .all-correct {
+        margin: 30px 0px;
+        text-align: center;
+    }
+
     button {
-        margin-left: auto;
-        margin-right: auto;
-        // display: flex;
-        // justify-content: center;
-        // float: right;
+        font-family: $q-text;
+        font-size: 15px;
+    }
+    .reset-btn {
+        float: right;
+        
     }
 }

@@ -1,7 +1,11 @@
 @import '../../variables.scss';
 
+#viz {
+    display: flex;
+    justify-content: center;
+}
 svg {
-    width: 250px;
-    height: 250px;
+    width: 400px;
+    height: 300px;
     border: 1px black solid;
 }

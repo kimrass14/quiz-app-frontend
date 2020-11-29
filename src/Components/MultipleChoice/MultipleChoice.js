@@ -40,11 +40,11 @@ const MultipleChoice = (props) => {
                 }
             }
             updateUserAnswer(updatedQuestionObj)
-            setMessage("Nice job. Correct Answer!")
+            setMessage("Correct!")
 
         } else {
             console.log("incorrect answer")
-            setMessage("That is not correct")
+            setMessage("Incorrect...")
         }
         // return(
         //     <div></div>
@@ -75,15 +75,18 @@ const MultipleChoice = (props) => {
     })
 
     return(
-        <div className="multiple-choice">
-            {/* <div>MultipleChoice</div> */}
-            {multipleChoice}
-            <div>{message}</div>
-            {/* <input
-                type="button"
-                value={choices[0]}
-                onClick={handleCompare}
-            /> */}
+        <div className="choice-div">
+            <div className="multiple-choice">
+                {/* <div>MultipleChoice</div> */}
+                {multipleChoice}
+                <div className="message">{message}</div>
+                {/* <input
+                    type="button"
+                    value={choices[0]}
+                    onClick={handleCompare}
+                /> */}
+            </div>
+            {/* <div className="message">{message}</div> */}
         </div>
     )
 }

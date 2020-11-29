@@ -37,7 +37,7 @@ const BubbleData = (props) => {
 
     return(
         <>
-            <div>BubbleData</div>
+            {/* <div>BubbleData</div> */}
             <BubbleChart dataSet={dataSet} />
             {/* <BubbleChart dataSet={dataSetCount} /> */}
             {props.categories ? loaded() : <div>waiting</div>}
