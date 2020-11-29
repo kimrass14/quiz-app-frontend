@@ -54,8 +54,8 @@ const BubbleChart = (props) => {
             })
             .attr("dy", ".2em")
             .style("text-anchor", "middle")
-            .attr("font-family", "sans-serif")
-            .attr("color", "black")
+            .attr("font-family", "Montserrat")
+            .attr("color", "#064E40")
             .style("font-size", "2px")
             .each(getSize)
             .style("font-size", function(d) {

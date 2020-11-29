@@ -8,7 +8,7 @@ const Nav = (props) => {
 
   const loaded = props.categories.map((cat, index) => {
         return(
-          <Dropdown.Item as={Link} to="/quiz" key={index} onClick={() => {props.handleGetCatQuestions(cat)}}>{cat.name}</Dropdown.Item>
+          <Dropdown.Item as={Link} to="/quiz" key={index} onClick={() => {props.handleGetCatQuestions(cat)}} className={cat.created === "custom" ? "custom" : "standard"}>{cat.name}</Dropdown.Item>
         )
     })
 

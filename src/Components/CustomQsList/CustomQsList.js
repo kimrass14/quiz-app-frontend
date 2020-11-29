@@ -23,7 +23,7 @@ const CustomQsList = (props) => {
                                 props.catToUpdateQuestion(props.customCategory)
                                 props.selectQuestion(question)
                                 props.history.push('/editquestion')}}>
-                            Update
+                            Edit
                         </button>
                         <button onClick={() => {props.handleDelete(question)}}>Delete</button>
                     </div>

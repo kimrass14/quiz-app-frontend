@@ -21,7 +21,7 @@ const CustomList = (props) => {
                             onClick={() => {
                                 props.selectCategory(customCategory)
                                 props.history.push('/editcategory')}}>
-                            Update
+                            Edit
                         </button>
                         <button onClick={() => {props.handleDelete(customCategory)}}>Delete</button>
                     </div>
