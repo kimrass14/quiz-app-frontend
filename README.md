@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# the.Learn App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An application that quizzes the user on different subjects / topics. Intended users are students or anyone wanting to learn. There are categories that are built into the app with multiple choice questions that are always available. The user can also create a custom quiz by creating a category and adding their own questions. This could be for a student trying to study for a test, someone trying to learn a new concept, a teacher creating an exam, etc.
 
-## Available Scripts
+Visit the deployed app on Netlify [the.Learn App](https://kr-quiz-app.netlify.app/).
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+- User can select a category to answer the multiple choice questions. The count of correct answers is displayed in a bubble chart.
+- User can reset the category to answer all questions over again
+- User can reset all questions in all categories with one button
+- User can create, edit and delete a custom category
+- User can create, edit and delete custom questions for their categories to take as a quiz
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Technologies Used
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- React
+- SCSS
+- D3
+- Ruby on Rails
 
-### `yarn test`
+### Installation Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To set up the app locally on your own system:
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork and clone the [project repository](https://github.com/kimrass14/quiz-app-frontend)
+2. Install all dependencies locally
+```
+npm install
+```
+3. Start up your server and navigate to port 4000 in your browser
+```
+npm run start
+```
