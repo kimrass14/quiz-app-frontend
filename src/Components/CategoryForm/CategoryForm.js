@@ -83,7 +83,7 @@ const CategoryForm = (props) => {
             </form>
             {props.categories ? 
                 <form className="select-cat" onSubmit={handleSubmitDropDown}>
-                    <label>Category you already created:    
+                    <label>Use a category you already created:    
                         <select value={categoryToQsForm[1]} onChange={handleChangeDropDown}>
                             <option value="option value">Select</option>
                             {loaded()}

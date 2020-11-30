@@ -87,7 +87,7 @@
                 font-size: 20px;
         }
 
-        .btn-div {
+        
             
 
             input[type=submit] {
@@ -100,6 +100,9 @@
                 height: auto;
                 color: $q-dark;
                 background-color: white;
+                @media(min-width: 768px) {
+                    margin-left: 35px;
+                }
             }
 
             button {
@@ -113,11 +116,9 @@
                 color: $q-dark;
                 background-color: white;
             }
-
-
-        }
         
 
     }
     
 }
+

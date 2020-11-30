@@ -6,6 +6,9 @@
   // border: solid black;
   font-family: $q-header;
   height: 700px;
+  @media(min-width: 768px) {
+        height: 1050px;
+    }
 
   header {
     background-color: $q-dark;
@@ -27,6 +30,11 @@
   main {
     height: 100%;
     // padding: 5%;
+    @media (min-width: 1024px) {
+      .quiz-route {
+        display: flex;
+      }
+    }
 
     .select-cat {
       text-align: center;

@@ -196,12 +196,12 @@ function App() {
             )}/>  */}
             
             <Route exact path='/quiz' render={(rp) => (
-                <>
+                <div className="quiz-route">
                   {"name" in selectedCatAndQuestions ? 
                     <Quiz {...rp} selectedCatAndQuestions={selectedCatAndQuestions} handleGetCatQuestions={handleGetCatQuestions} url={url} getCategories={getCategories} /> :
                     <div className="select-cat">Select a category</div>}
                   <BubbleData {...rp} categories={categories} />
-                </>
+                </div>
             )}/>
                 
             <Route exact path='/customcategory' render={(rp) => (

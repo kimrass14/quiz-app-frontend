@@ -26,7 +26,7 @@ const BubbleChart = (props) => {
         .force("x", d3.forceX(400 /2).strength(.04))
         .force("y", d3.forceY(300 /2).strength(.04))
         .force("collide", d3.forceCollide(function(d) {
-            return radiusScale(d.correct_count) + 1
+            return radiusScale(d.correct_count) + 8
         }))
 
     useEffect(() => {
@@ -99,7 +99,7 @@ const BubbleChart = (props) => {
 
     return(
         <div className="container">
-            {/* <div>BubbleChart</div> */}
+            <h3>Correct by category:</h3>
             <div id="viz">
             <svg>
                 <g ref={gRef} transform="translate(0,0)"></g>    
