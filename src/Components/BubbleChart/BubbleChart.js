@@ -56,18 +56,31 @@ const BubbleChart = (props) => {
             .style("text-anchor", "middle")
             .attr("font-family", "Montserrat")
             .attr("color", "#064E40")
-            .style("font-size", "2px")
-            .each(getSize)
-            .style("font-size", function(d) {
-                return d.scale + "px"
+            // .style("font-size", "10px")
+            .style("font-size", function(d){
+                if(d.correct_count < 1) {
+                    return "10px"
+                } else if (d.correct_count < 3) {
+                    return "14px" 
+                } else if (d.correct_count < 6) {
+                    return "17px"
+                } else if (d.correct_count < 10) {
+                    return "20px"
+                } else {
+                    return "25px"
+                }
             })
+            // .each(getSize)
+            // .style("font-size", function(d) {
+            //     return d.scale + "px"
+            // })
         
-            function getSize(d) {
-                let bbox = this.getBBox(),
-                    cbbox = this.parentNode.getBBox(),
-                    scale = Math.min(cbbox.width/bbox.width, cbbox.height/bbox.height);
-                d.scale = scale;
-            }
+            // function getSize(d) {
+            //     let bbox = this.getBBox(),
+            //         cbbox = this.parentNode.getBBox(),
+            //         scale = Math.min(cbbox.width/bbox.width, cbbox.height/bbox.height);
+            //     d.scale = scale;
+            // }
         
 
         //tick function for simulations. standard function.

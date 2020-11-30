@@ -88,7 +88,7 @@
         }
 
         
-            
+        div.btn-div {
 
             input[type=submit] {
                 margin: 30px 15px;
@@ -103,6 +103,11 @@
                 @media(min-width: 768px) {
                     margin-left: 35px;
                 }
+                @media(min-width: 1024px) {
+                    position: relative;
+                    left: -330px;
+                    top: 100px;
+                }
             }
 
             button {
@@ -115,10 +120,14 @@
                 height: auto;
                 color: $q-dark;
                 background-color: white;
+                @media(min-width: 1024px) {
+                    position: relative;
+                    left: 50px;
+                    top: -3px;
+                }
             }
         
-
+        }
     }
     
 }
-

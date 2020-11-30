@@ -3,10 +3,17 @@
 .questions-list {
     display: flex;
     justify-content: space-between;
+    
 
     div {
         font-size: 15px;
         color: $q-medium;
         font-family: $q-text;
     }
-}
+
+    .quiz-question {
+        width: 70%;
+        margin-bottom: 10px;
+    }
+    
+    }
