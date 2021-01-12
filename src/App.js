@@ -107,7 +107,7 @@ function App() {
   }, [])
 
   const handleGetCatQuestions = async (category) => {
-    // console.log('handle get cat questions', category)
+    
       try{
           const response = await fetch(url + '/categories/' + category.id)
           const data = await response.json()
@@ -118,9 +118,7 @@ function App() {
         console.log(error)
       }
   }
-  // useEffect(() => {
-  //   handleGetCatQuestions();
-  // }, [])
+
   
   const handleUpdateCategory = async (category) => {
       try{
@@ -169,7 +167,7 @@ function App() {
   }
 
     const handleDeleteCategory = (category) => {
-      // console.log('delete .then', category)
+      
       fetch(url + '/categories/' + category.id, {
         method: 'delete',
       }).then((response) => getCategories());
@@ -191,9 +189,7 @@ function App() {
             <Route exact path='/' render={(rp) => (
                 <Homepage {...rp}/>
             )}/> 
-            {/* <Route path='/q' render={(rp) => (
-                <BubbleData {...rp} categories={categories}/>
-            )}/>  */}
+            
             
             <Route exact path='/quiz' render={(rp) => (
                 <div className="quiz-route">

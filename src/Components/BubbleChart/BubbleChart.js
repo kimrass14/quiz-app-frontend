@@ -18,8 +18,6 @@ const BubbleChart = (props) => {
     // }, [props.dataSet[0].correct_count])
 // }, [...props.dataSet.map(item => item.correct_count)])
 
-    //scaleSqrt bc circles. Domain is range in dataset
-    //range is min and max size I want the circles to be
     const radiusScale = d3.scaleSqrt().domain([0, 15]).range([30, 100])
    
     const simulation = d3.forceSimulation()
@@ -83,7 +81,7 @@ const BubbleChart = (props) => {
             // }
         
 
-        //tick function for simulations. standard function.
+        
         const ticked = () => {
             circles
                 .attr("cx", function(d) {
@@ -102,7 +100,7 @@ const BubbleChart = (props) => {
                 })
         }
         
-        //at every tick of clock, run ticked function
+        
         simulation.nodes(dataArr)
             .on('tick', ticked)
 

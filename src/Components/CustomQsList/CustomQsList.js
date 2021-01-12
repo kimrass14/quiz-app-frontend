@@ -11,12 +11,7 @@ const CustomQsList = (props) => {
         return(
             <div className="questions-list" key={index}>
                     <div className="quiz-question" >Question: {question.quiz_question}</div>
-                    {/* <button 
-                        onClick={() => {
-                            props.selectCategory(customCategory)
-                            props.history.push('/editcategory')}}>
-                        Update
-                    </button> */}
+                    
                     <div className="button-div">
                         <button 
                             onClick={() => {
