@@ -46,9 +46,7 @@ const MultipleChoice = (props) => {
             console.log("incorrect answer")
             setMessage("Incorrect...")
         }
-        // return(
-        //     <div></div>
-        // )
+       
     }
 
     
@@ -77,16 +75,12 @@ const MultipleChoice = (props) => {
     return(
         <div className="choice-div">
             <div className="multiple-choice">
-                {/* <div>MultipleChoice</div> */}
+                
                 {multipleChoice}
                 <div className="message">{message}</div>
-                {/* <input
-                    type="button"
-                    value={choices[0]}
-                    onClick={handleCompare}
-                /> */}
+                
             </div>
-            {/* <div className="message">{message}</div> */}
+            
         </div>
     )
 }

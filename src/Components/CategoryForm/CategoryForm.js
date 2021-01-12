@@ -40,16 +40,14 @@ const CategoryForm = (props) => {
     const handleChangeDropDown = (e) => {
         console.log('handle change dropdown event', e)
 
-        //unable to pass the category obj in the value property of the option tag
-        //recreating the category object with id and name to pass to questions form
+        
         const targetArr = e.target.value.split(",")
         const idInteger = parseInt(targetArr[0])
         const categoryObj = {"id": idInteger, "name": targetArr[1]}
         console.log('category object', categoryObj)
 
         setCategoryToQsForm(categoryObj)
-        //({value: customCategory})
-        //need to pass category object? since it it's already created.
+        
     }
 
     const handleSubmit = (event) => {
@@ -64,7 +62,7 @@ const CategoryForm = (props) => {
         props.handleSubmitCatToQ(categoryToQsForm)
         props.history.push(props.route)
         console.log('handle submit dropdown', event)
-        //pass category from dropdown to a handlesubmit function in app that passes category (need name and id) to questions form
+        
     }
 
     return(
