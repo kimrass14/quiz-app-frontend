@@ -1,22 +1,15 @@
 import React, {useState, useRef, useEffect} from 'react'
 import * as d3 from 'd3'
 import './BubbleChart.scss'
-import { scaleSqrt } from 'd3'
 
 const BubbleChart = (props) => {
-    // console.log('bubble chart props', props)
 
     const [dataArr, setDataArr] = useState(props.dataSet)
     const gRef = useRef()
 
     useEffect(() => {
-        console.log('use effect dataSet', props.dataSet)
-        
         setDataArr(props.dataSet)
-        console.log('dataArr', dataArr)
     }, [props.dataSet])
-    // }, [props.dataSet[0].correct_count])
-// }, [...props.dataSet.map(item => item.correct_count)])
 
     const radiusScale = d3.scaleSqrt().domain([0, 15]).range([30, 100])
    
@@ -28,8 +21,6 @@ const BubbleChart = (props) => {
         }))
 
     useEffect(() => {
-        console.log('dataArr', dataArr)
-
          const circles = d3
             .select(gRef.current)
             .selectAll("circle")
@@ -54,7 +45,6 @@ const BubbleChart = (props) => {
             .style("text-anchor", "middle")
             .attr("font-family", "Montserrat")
             .attr("color", "#064E40")
-            // .style("font-size", "10px")
             .style("font-size", function(d){
                 if(d.correct_count < 1) {
                     return "10px"
@@ -68,19 +58,6 @@ const BubbleChart = (props) => {
                     return "25px"
                 }
             })
-            // .each(getSize)
-            // .style("font-size", function(d) {
-            //     return d.scale + "px"
-            // })
-        
-            // function getSize(d) {
-            //     let bbox = this.getBBox(),
-            //         cbbox = this.parentNode.getBBox(),
-            //         scale = Math.min(cbbox.width/bbox.width, cbbox.height/bbox.height);
-            //     d.scale = scale;
-            // }
-        
-
         
         const ticked = () => {
             circles
@@ -105,8 +82,6 @@ const BubbleChart = (props) => {
             .on('tick', ticked)
 
     }, [dataArr])
-    // }, [...dataArr.map(item => item.correct_count)])
-
 
     return(
         <div className="container">

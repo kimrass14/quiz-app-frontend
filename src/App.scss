@@ -3,7 +3,6 @@
 
 .App {
   background-color: $q-light;
-  // border: solid black;
   font-family: $q-header;
   height: 700px;
   @media(min-width: 768px) {
@@ -17,19 +16,13 @@
     justify-content: space-around;
     align-items: center;
     padding: 10px;
-    // position: fixed;
-
       div {
       align-items: center;
       }
-    
-
-    
   }
 
   main {
     height: 100%;
-    // padding: 5%;
     @media (min-width: 1024px) {
       .quiz-route {
         display: flex;

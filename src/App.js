@@ -47,11 +47,6 @@ function App() {
     setSelectedQuestion(question)
   }
 
- 
-
-  
-
-  // const url = 'http://localhost:3000'
   const url = 'https://quiz-app-kr-backend.herokuapp.com'
   
 
@@ -94,7 +89,6 @@ function App() {
       try{
         const response = await fetch(url + '/categories')
         const data = await response.json()
-        console.log('get categories', data)
         //onclick of next button, returning updated data with user_answer = correct
         setCategories(data)
       } catch (error) {
@@ -111,7 +105,6 @@ function App() {
       try{
           const response = await fetch(url + '/categories/' + category.id)
           const data = await response.json()
-          console.log('cat questions data', data)
           setSelectedCatAndQuestions(data)
 
       } catch (error) {
@@ -131,7 +124,6 @@ function App() {
         })
         const response = await updatedCategory.json()
         getCategories()
-        // setCreatedCategory(response)
         console.log('handleUpdate category', response)
       } catch (error) {
         console.log(error)
@@ -139,8 +131,6 @@ function App() {
   }
 
   const handleUpdateQuestion = async (question, questionBeforeUpdate) => {
-    console.log('handleupdate question', question)
-    console.log('handleupdate question', questionBeforeUpdate)
       try{
           const updatedQuestion = await fetch(url + '/categories/' + question.category_id + '/questions/' + question.id, {
           method: 'put',
@@ -154,13 +144,10 @@ function App() {
         if(question.user_answer === questionBeforeUpdate.user_answer) {
           getCategories()
         }
-
         //Conditional for calling getCategories: 
         //Both actions of updating question from View and when correct answer is selected by user
         //calls this handleUpdateQuestion function
         //However, calling getCategories renders a new question in the quiz just by user selecting the correct answer instead of when Next button is selected
-
-        console.log('handleUpdate question', response)
       } catch (error) {
         console.log(error)
       }

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import './MultipleChoice.scss'
 
 const MultipleChoice = (props) => {
-    // console.log('mult choice props', props)
 
     const [choices, setChoices] = useState([])
     const [message, setMessage] = useState()
@@ -19,8 +18,6 @@ const MultipleChoice = (props) => {
             updatedQuestionObj.user_answer = "correct"
             
             const updateUserAnswer = async (updatedQuestion) => {
-                // console.log('fetch updatedQuestionObj', updatedQuestion)
-                
                 try{
                     
                     const response = await fetch(props.url + '/categories/' + questionObj.category_id + '/questions/' + questionObj.id,
@@ -30,11 +27,6 @@ const MultipleChoice = (props) => {
                         body: JSON.stringify(updatedQuestion)
                     })
                     const res = await response.json()
-                    // console.log('updated user answer in db', res)
-                    
-                    //by calling the getCategories fetch it was updating the question to a new one
-                    // props.getCategories()
-                    
                 } catch (error) {
                     console.log(error)
                 }
@@ -43,13 +35,10 @@ const MultipleChoice = (props) => {
             setMessage("Correct!")
 
         } else {
-            console.log("incorrect answer")
             setMessage("Incorrect...")
         }
        
     }
-
-    
 
     useEffect(() => {
         const questionObj = props.question
@@ -75,12 +64,9 @@ const MultipleChoice = (props) => {
     return(
         <div className="choice-div">
             <div className="multiple-choice">
-                
                 {multipleChoice}
                 <div className="message">{message}</div>
-                
             </div>
-            
         </div>
     )
 }

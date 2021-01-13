@@ -1,16 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {withRouter} from 'react-router-dom'
 import './CategoryForm.scss'
 
 const CategoryForm = (props) => {
-    // console.log('form new category', props.createdCategory)
     
     const [formData, setFormData] = useState(props.selectedCategory)
     const [categoryToQsForm, setCategoryToQsForm] = useState([])
-    console.log('category to question form', categoryToQsForm)
 
     const loaded = () => { return props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
-        // console.log('custom category', customCategory)
 
         return(
             <>
@@ -33,9 +30,6 @@ const CategoryForm = (props) => {
         setFormData({...formData, [key]: value, "created": "custom"})
         console.log('formData', formData)
     }
-
-    
-
 
     const handleChangeDropDown = (e) => {
         console.log('handle change dropdown event', e)
