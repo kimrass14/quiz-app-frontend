@@ -2,16 +2,13 @@ import React, {useState} from 'react'
 import './QuestionForm.scss'
 
 const QuestionForm = (props) => {
-    console.log('question form props', props)
     
     const [formData, setFormData] = useState(props.selectedQuestion)
-    // const [state, setState] = useState()
 
     const handleChange = (e) => {
         const key = e.target.name
         const value = e.target.value
         setFormData({...formData, [key]: value, "category_id": props.createdCategory.id, "user_answer": "incorrect"})
-        console.log('formData', formData)
     }
 
     const handleSubmit = (event) => {

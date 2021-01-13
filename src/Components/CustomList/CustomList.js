@@ -3,13 +3,8 @@ import CustomQsList from '../CustomQsList/CustomQsList'
 import './CustomList.scss'
 
 const CustomList = (props) => {
-    // console.log('custom list props', props)
-
-    
-    //had to remove getCategories call from put request bc it was sending another question in the quiz when correct answer was selected
 
     const loaded = props.categories.filter(category => category.created === "custom").map((customCategory, index) => {
-        // console.log('custom category', customCategory)
 
         return(
         
@@ -28,7 +23,6 @@ const CustomList = (props) => {
                 </div>
                 <CustomQsList customCategory={customCategory} handleDelete={props.handleDeleteQs} selectQuestion={props.selectQuestion} catToUpdateQuestion={props.catToUpdateQuestion}/>
             </div>
-        
         )
     })
 
@@ -37,9 +31,7 @@ const CustomList = (props) => {
     return(
         <div className="custom-list">
             <h3>Your categories and questions</h3>
-            
                 {props.categories ? loaded : loading}
-            
         </div>
     )
 }
